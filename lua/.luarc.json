@@ -1,0 +1,12 @@
+{
+    "diagnostics.disable": [
+        "trailing-space",
+        "redundant-parameter"
+    ],
+    "diagnostics.globals": [
+        "vim",
+        "opt",
+        "cmd",
+        "opts"
+    ]
+}
