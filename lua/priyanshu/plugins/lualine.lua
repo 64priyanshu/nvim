@@ -18,7 +18,6 @@ return {
 			},
 			options = {
 				show_command = false,
-				disabled_filetypes = { "dashboard" },
 			},
 		})
 	end,
