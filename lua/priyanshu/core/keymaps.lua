@@ -51,7 +51,7 @@ vim.keymap.set("n", "N", "Nzzzv")
 -- Cursor stays at the current position after Joining lines
 vim.keymap.set("n", "J", "mzJ`z")
 
--- Stay in Visual mode
+-- Stay in Visual mode after changing Indent with < >
 vim.keymap.set("v", "<", "<gv", { silent = true })
 vim.keymap.set("v", ">", ">gv", { silent = true })
 

@@ -1,4 +1,4 @@
--- Instead of 4, use 2 spaces as (auto)indentation
+-- Instead of 4, use 2 spaces as (auto)indentation in python files
 vim.api.nvim_create_autocmd("FileType", {
 	pattern = "python",
 	command = "setlocal tabstop=2 shiftwidth=2 expandtab",
@@ -18,7 +18,7 @@ vim.api.nvim_create_autocmd("TextYankPost", {
 	end,
 })
 
--- Go to the last location when opening a buffer
+-- Go to the location where the file was last exited when opening a buffer
 vim.api.nvim_create_autocmd("BufReadPost", {
 	callback = function()
 		local mark = vim.api.nvim_buf_get_mark(0, '"')

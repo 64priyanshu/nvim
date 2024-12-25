@@ -5,7 +5,6 @@ local M = {
 
 function M.config()
 	require("colorizer").setup({
-		"*",
 		html = {
 			names = false,
 			RRGGBBAA = true,
