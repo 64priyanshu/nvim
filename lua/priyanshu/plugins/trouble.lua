@@ -1,4 +1,4 @@
-return {
+local M = {
 	"folke/trouble.nvim",
 	dependencies = { "nvim-tree/nvim-web-devicons" },
 	opts = {},
@@ -8,3 +8,5 @@ return {
 		{ "<leader>td", "<CMD>Trouble diagnostics toggle filter.buf=0<CR>" },
 	},
 }
+
+return M

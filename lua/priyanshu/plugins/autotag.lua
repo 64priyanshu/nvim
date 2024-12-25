@@ -1,11 +1,14 @@
-return {
+local M = {
 	"windwp/nvim-ts-autotag",
 	event = "InsertEnter",
-	config = function()
-		require("nvim-ts-autotag").setup({
-			opts = {
-				enable_rename = false,
-			},
-		})
-	end,
 }
+
+function M.config()
+	require("nvim-ts-autotag").setup({
+		opts = {
+			enable_rename = false,
+		},
+	})
+end
+
+return M
