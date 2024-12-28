@@ -84,8 +84,8 @@ vim.keymap.set(
 )
 
 -- Quickfix keymaps
-vim.keymap.set("n", "<leader>cn", "<CMD>cnext<CR>", { silent = true })
-vim.keymap.set("n", "<leader>cp", "<CMD>cprev<CR>", { silent = true })
+vim.keymap.set("n", "<C-j>", "<CMD>cnext<CR>", { silent = true })
+vim.keymap.set("n", "<C-k>", "<CMD>cprev<CR>", { silent = true })
 vim.keymap.set("n", "<leader>co", "<CMD>copen<CR>", { silent = true })
 vim.keymap.set("n", "<leader>cc", "<CMD>cclose<CR>", { silent = true })
 
