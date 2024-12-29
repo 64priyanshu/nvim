@@ -40,5 +40,5 @@ vim.opt.guicursor = {
 	"r-o:hor20",
 }
 
--- Store undofiles in this directory (USERPROFILE for Win, HOME for Linux)
-vim.opt.undodir = (os.getenv("USERPROFILE") or os.getenv("HOME")) .. "/.vim/undodir"
+-- Store undofiles in home/.vim/undodir/
+vim.opt.undodir = vim.fn.expand("$HOME") .. "/.vim/undodir"

@@ -28,3 +28,19 @@ vim.api.nvim_create_autocmd("BufReadPost", {
 		end
 	end,
 })
+
+-- Set up logdir and logfile paths
+local logdir = vim.fn.expand("$HOME") .. "/.vim/logdir"
+local logfile = logdir .. "/logs.txt"
+
+-- Create logdir if it doesn't exist
+vim.fn.mkdir(logdir, "p")
+
+-- Autocommand to re-write (not append) vim messages in logs.txt on exiting
+vim.api.nvim_create_autocmd("VimLeavePre", {
+	callback = function()
+		vim.cmd(string.format("silent! redir! > %s", logfile))
+		vim.cmd("silent! messages")
+		vim.cmd("silent! redir END")
+	end,
+})
