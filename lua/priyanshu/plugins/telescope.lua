@@ -10,6 +10,12 @@ local M = {
 function M.config()
 	require("telescope").setup({
 		pickers = {
+			live_grep = {
+				file_ignore_patterns = { "node_modules", ".git", ".venv" },
+				additional_args = function(_)
+					return { "--hidden" }
+				end,
+			},
 			colorscheme = {
 				enable_preview = true,
 			},
@@ -43,6 +49,15 @@ function M.config()
 	-- Telescope find files without preview
 	vim.keymap.set("n", "<leader>ff", function()
 		builtin.find_files({
+			previewer = false,
+		})
+	end, { silent = true })
+
+	-- Telescope find files inside dotfiles
+	vim.keymap.set("n", "<leader>fd", function()
+		builtin.find_files({
+			hidden = true,
+			file_ignore_patterns = { "node_modules", ".git", ".venv" },
 			previewer = false,
 		})
 	end, { silent = true })
