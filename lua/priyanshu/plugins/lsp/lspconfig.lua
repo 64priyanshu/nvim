@@ -27,7 +27,7 @@ function M.config()
 		"clangd",
 		"ts_ls",
 		"pyright",
-		"csharp_ls",
+		-- "csharp_ls",
 		"intelephense",
 	}
 	for _, server in ipairs(langservers) do

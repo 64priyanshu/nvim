@@ -13,7 +13,7 @@ function M.config()
 			"lua_ls",
 			"ts_ls",
 			"clangd",
-			"csharp_ls",
+			-- "csharp_ls",
 			"html",
 			"cssls",
 			"intelephense",

@@ -5,7 +5,9 @@ local M = {
 }
 
 function M.config()
-	require("live-server").setup(opts)
+	require("live-server").setup({
+		args = { "--port=8080", "--browser=firefox" },
+	})
 end
 
 return M
