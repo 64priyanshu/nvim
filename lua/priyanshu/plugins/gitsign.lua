@@ -15,7 +15,17 @@ function M.config()
 			untracked = { text = "u" },
 		},
 		signs_staged_enable = false,
+		preview_config = {
+			border = "none",
+			style = "minimal",
+			relative = "cursor",
+			row = 0,
+			col = 1,
+		},
 	})
+	vim.keymap.set("n", "<leader>gj", "<CMD>Gitsigns next_hunk<CR>", { silent = true })
+	vim.keymap.set("n", "<leader>gk", "<CMD>Gitsigns prev_hunk<CR>", { silent = true })
+	vim.keymap.set("n", "<leader>gb", "<CMD>Gitsigns blame_line<CR>", { silent = true })
 end
 
 return M
