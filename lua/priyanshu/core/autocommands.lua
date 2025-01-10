@@ -14,7 +14,10 @@ vim.api.nvim_create_autocmd("BufEnter", {
 vim.api.nvim_create_autocmd("TextYankPost", {
 	pattern = "*",
 	callback = function()
-		vim.highlight.on_yank()
+		vim.highlight.on_yank({
+			higroup = "IncSearch",
+			timeout = 80,
+		})
 	end,
 })
 
@@ -26,6 +29,31 @@ vim.api.nvim_create_autocmd("BufReadPost", {
 		if mark[1] > 0 and mark[1] <= lcount then
 			pcall(vim.api.nvim_win_set_cursor, 0, mark)
 		end
+	end,
+})
+
+-- Exit these windows/buffers pressing <ESC> or q
+vim.api.nvim_create_autocmd({ "FileType" }, {
+	pattern = {
+		"help",
+		"lspinfo",
+		"checkhealth",
+		"qf",
+	},
+	callback = function()
+		vim.cmd([[
+      nnoremap <silent> <buffer> q <CMD>close<CR>
+      nnoremap <silent> <buffer> <esc> <CMD>close<CR>
+      set nobuflisted
+    ]])
+	end,
+})
+
+-- Exit command-line window pressing <ESC> or q
+vim.api.nvim_create_autocmd("CmdWinEnter", {
+	callback = function()
+		vim.api.nvim_buf_set_keymap(0, "n", "q", "<CMD>quit<CR>", { noremap = true, silent = true })
+		vim.api.nvim_buf_set_keymap(0, "n", "<ESC>", "<CMD>quit<CR>", { noremap = true, silent = true })
 	end,
 })
 
