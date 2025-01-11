@@ -21,6 +21,16 @@ vim.api.nvim_create_autocmd("TextYankPost", {
 	end,
 })
 
+-- Remove trailing whitespaces before saving a file
+vim.api.nvim_create_autocmd("BufWritePre", {
+	pattern = "*",
+	callback = function()
+		local pos = vim.api.nvim_win_get_cursor(0) -- Get the current cursor position
+		vim.cmd([[%s/\s\+$//e]]) -- Perform the substitution to remove trailing spaces
+		vim.api.nvim_win_set_cursor(0, pos) -- Restore the cursor position
+	end,
+})
+
 -- Go to the location where the file was last exited when opening a buffer
 vim.api.nvim_create_autocmd("BufReadPost", {
 	callback = function()
