@@ -15,6 +15,10 @@ function M.config()
 		vim.keymap.set("n", "<leader>la", vim.lsp.buf.code_action, bufopts)
 		vim.keymap.set("n", "<leader>rn", vim.lsp.buf.rename, bufopts)
 		vim.keymap.set({ "n", "i" }, "<C-h>", vim.lsp.buf.signature_help, bufopts)
+		-- Diagnostic
+		vim.keymap.set("n", "<leader>le", vim.diagnostic.open_float, bufopts)
+		vim.keymap.set("n", "<leader>dj", vim.diagnostic.goto_next, bufopts)
+		vim.keymap.set("n", "<leader>dk", vim.diagnostic.goto_prev, bufopts)
 	end
 
 	local capabilities_ = vim.lsp.protocol.make_client_capabilities()

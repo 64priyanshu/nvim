@@ -7,7 +7,9 @@ vim.api.nvim_create_autocmd("FileType", {
 -- Prevent from automatically inserting comment leader when opening new line under a comment
 vim.api.nvim_create_autocmd("BufEnter", {
 	pattern = "*",
-	command = "setlocal formatoptions-=cro",
+	callback = function()
+		vim.cmd("set formatoptions-=cro")
+	end,
 })
 
 -- Highlight on yank
