@@ -16,6 +16,7 @@ function M.config()
 					padding = 1,
 				},
 			},
+			-- Hide terminal buffer in bufferline tab
 			custom_filter = function(buf_number, buf_numbers)
 				if vim.bo[buf_number].filetype ~= "terminal" then
 					return true

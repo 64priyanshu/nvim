@@ -83,6 +83,10 @@ vim.keymap.set(
 	'<CMD>let @+ = expand("%:p:h")<CR><CMD>lua print("Copied path to: " .. vim.fn.expand("%:p:h"))<CR>'
 )
 
+-- Terminal splits
+vim.api.nvim_set_keymap("n", "<leader>t-", ":belowright 10split | term<CR>", { silent = true })
+vim.api.nvim_set_keymap("n", "<leader>t|", ":botright 70vsplit | term<CR>", { silent = true })
+
 -- Quickfix keymaps
 vim.keymap.set("n", "<C-j>", "<CMD>cnext<CR>", { silent = true })
 vim.keymap.set("n", "<C-k>", "<CMD>cprev<CR>", { silent = true })
