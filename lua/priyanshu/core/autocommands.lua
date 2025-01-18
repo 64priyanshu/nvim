@@ -69,6 +69,19 @@ vim.api.nvim_create_autocmd("CmdWinEnter", {
 	end,
 })
 
+vim.api.nvim_create_autocmd("TermOpen", {
+	pattern = "term://*",
+	callback = function()
+		if vim.opt.buftype:get() == "terminal" then
+			vim.opt_local.number = false
+			vim.opt_local.relativenumber = false
+			vim.opt_local.cursorline = false
+			vim.opt.filetype = "terminal"
+			vim.cmd.startinsert() -- Start in insert mode
+		end
+	end,
+})
+
 -- Set up logdir and logfile paths
 local logdir = vim.fn.expand("$HOME") .. "/.vim/logdir"
 local logfile = logdir .. "/logs.txt"
