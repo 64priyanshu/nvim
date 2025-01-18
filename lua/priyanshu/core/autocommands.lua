@@ -76,6 +76,7 @@ vim.api.nvim_create_autocmd("TermOpen", {
 			vim.opt_local.number = false
 			vim.opt_local.relativenumber = false
 			vim.opt_local.cursorline = false
+			vim.opt_local.signcolumn = "no"
 			vim.opt.filetype = "terminal"
 			vim.cmd.startinsert() -- Start in insert mode
 		end
