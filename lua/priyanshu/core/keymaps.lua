@@ -90,8 +90,15 @@ vim.keymap.set("n", "<leader>t|", ":botright 70vsplit | term<CR>", { silent = tr
 -- Quickfix keymaps
 vim.keymap.set("n", "<C-j>", "<CMD>cnext<CR>", { silent = true })
 vim.keymap.set("n", "<C-k>", "<CMD>cprev<CR>", { silent = true })
-vim.keymap.set("n", "<leader>co", "<CMD>copen<CR>", { silent = true })
-vim.keymap.set("n", "<leader>cc", "<CMD>cclose<CR>", { silent = true })
+
+-- Toggle quickfix window
+vim.keymap.set("n", "<leader>tq", function()
+	if vim.fn.getwininfo(vim.fn.win_getid())[1].quickfix == 1 then
+		vim.cmd("cclose")
+	else
+		vim.cmd("copen")
+	end
+end, { silent = true })
 
 -- Empty Quickfix list
 vim.keymap.set("n", "<leader>ck", function()
