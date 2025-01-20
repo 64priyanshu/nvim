@@ -6,6 +6,18 @@ local M = {
 	keys = {
 		{ "<leader>tt", "<CMD>Trouble diagnostics toggle<CR>" },
 		{ "<leader>td", "<CMD>Trouble diagnostics toggle filter.buf=0<CR>" },
+		{
+			"<leader>tj",
+			function()
+				require("trouble").next({ skip_groups = true, jump = true })
+			end,
+		},
+		{
+			"<leader>tk",
+			function()
+				require("trouble").prev({ skip_groups = true, jump = true })
+			end,
+		},
 	},
 }
 
