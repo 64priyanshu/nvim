@@ -30,6 +30,7 @@ function M.config()
 			hsl_fn = true,
 		},
 	})
+	vim.keymap.set("n", "<leader>rc", "<CMD>ColorizerReloadAllBuffers<CR>", { noremap = true, silent = true })
 end
 
 return M
