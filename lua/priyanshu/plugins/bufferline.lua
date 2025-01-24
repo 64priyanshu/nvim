@@ -16,13 +16,22 @@ function M.config()
 					padding = 1,
 				},
 			},
+			sort_by = "insert_at_end",
+
 			-- Hide terminal buffer in bufferline tab
 			custom_filter = function(buf_number, buf_numbers)
 				if vim.bo[buf_number].filetype ~= "terminal" then
 					return true
 				end
 			end,
-			sort_by = "insert_at_end",
+
+			-- Diagnostics
+			diagnostics = "nvim_lsp",
+			diagnostics_update_on_event = true,
+			diagnostics_indicator = function(count, level)
+				local icon = level:match("error") and "E" or "W"
+				return icon .. count
+			end,
 		},
 	})
 
