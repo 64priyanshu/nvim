@@ -53,19 +53,17 @@ vim.api.nvim_create_autocmd({ "FileType" }, {
 		"qf",
 	},
 	callback = function()
-		vim.cmd([[
-      nnoremap <silent> <buffer> q <CMD>close<CR>
-      nnoremap <silent> <buffer> <esc> <CMD>close<CR>
-      set nobuflisted
-    ]])
+		vim.api.nvim_buf_set_keymap(0, "n", "q", "<CMD>close<CR>", { noremap = true, silent = true })
+		vim.api.nvim_buf_set_keymap(0, "n", "<esc>", "<CMD>close<CR>", { noremap = true, silent = true })
+		vim.cmd("setlocal nobuflisted")
 	end,
 })
 
 -- Exit command-line window pressing <ESC> or q
 vim.api.nvim_create_autocmd("CmdWinEnter", {
 	callback = function()
-		vim.api.nvim_buf_set_keymap(0, "n", "q", "<CMD>quit<CR>", { noremap = true, silent = true })
-		vim.api.nvim_buf_set_keymap(0, "n", "<ESC>", "<CMD>quit<CR>", { noremap = true, silent = true })
+		vim.api.nvim_buf_set_keymap(0, "n", "q", "<CMD>close<CR>", { noremap = true, silent = true })
+		vim.api.nvim_buf_set_keymap(0, "n", "<ESC>", "<CMD>close<CR>", { noremap = true, silent = true })
 	end,
 })
 

@@ -84,8 +84,8 @@ vim.keymap.set(
 )
 
 -- Terminal splits
-vim.keymap.set("n", "<leader>t-", ":belowright 10split | term<CR>", { silent = true })
-vim.keymap.set("n", "<leader>t|", ":botright 70vsplit | term<CR>", { silent = true })
+vim.keymap.set("n", "<leader>t-", "<CMD>belowright 10split | term<CR>", { silent = true })
+vim.keymap.set("n", "<leader>t|", "<CMD>botright 70vsplit | term<CR>", { silent = true })
 
 -- Quickfix keymaps
 vim.keymap.set("n", "]q", "<CMD>cnext<CR>", { silent = true })
