@@ -7,7 +7,7 @@ vim.keymap.set("n", "-", "<CMD>split<CR><C-w>j", { silent = true })
 
 -- Quick file save/close action
 vim.keymap.set("n", "<leader>w", "<CMD>w<CR>", { silent = true })
-vim.keymap.set("n", "<leader>q", ":bp|bd #<CR>", { silent = true })
+vim.keymap.set("n", "<leader>q", "<CMD>bp|bd #<CR>", { silent = true })
 
 -- Line Wrap
 vim.keymap.set("n", "<leader>lw", "<CMD>set wrap!<CR>", { silent = true })
