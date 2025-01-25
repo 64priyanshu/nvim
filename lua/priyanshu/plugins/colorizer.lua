@@ -30,6 +30,8 @@ function M.config()
 			hsl_fn = true,
 		},
 	})
+
+	-- Keymaps
 	vim.keymap.set("n", "<leader>ca", "<CMD>ColorizerAttachToBuffer<CR>", { noremap = true, silent = true })
 	vim.keymap.set("n", "<leader>cr", "<CMD>ColorizerReloadAllBuffers<CR>", { noremap = true, silent = true })
 end

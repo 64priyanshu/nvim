@@ -24,6 +24,8 @@ function M.config()
 				},
 			},
 		},
+
+		-- Highlights
 		vim.api.nvim_set_hl(0, "IblWhitespace", { fg = "#403e41" }),
 		vim.api.nvim_set_hl(0, "IblScope", { fg = "#5b595c" }),
 	})

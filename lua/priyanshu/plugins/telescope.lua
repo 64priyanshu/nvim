@@ -41,6 +41,7 @@ function M.config()
 		},
 	})
 
+	-- Keymaps
 	vim.keymap.set("n", "<leader>sf", builtin.find_files, { silent = true })
 	vim.keymap.set("n", "<leader>st", builtin.live_grep, { silent = true })
 	vim.keymap.set("n", "<leader>sb", builtin.buffers, { silent = true })

@@ -37,6 +37,8 @@ function M.config()
 			update_cwd = true,
 		},
 	})
+
+	-- Keymaps
 	vim.keymap.set("n", "<leader>e", "<CMD>NvimTreeToggle<CR>", { silent = true })
 end
 
