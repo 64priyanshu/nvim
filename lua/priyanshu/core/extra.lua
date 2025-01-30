@@ -45,7 +45,7 @@ vim.keymap.set("n", "<leader>ss", function()
 	else
 		vim.ui.input({ prompt = "Session name: " }, function(session_name)
 			if session_name and session_name ~= "" then
-				local date_time = tostring(os.date("%b%d_%I-%M-%p")):lower()
+				local date_time = tostring(os.date("%b%d_%H%M")):lower()
 				local session_filename = session_name .. "_" .. date_time .. ".vim"
 				local session_path = sessions_dir .. "/" .. session_filename
 				vim.cmd("mksession! " .. session_path)
