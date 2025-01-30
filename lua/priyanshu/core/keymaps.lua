@@ -108,7 +108,7 @@ vim.keymap.set("n", "<leader>tq", function()
 	end
 end, { silent = true })
 
--- Empty Quickfix list
+-- Clear Quickfix list
 vim.keymap.set("n", "<leader>ck", function()
 	vim.fn.setqflist({}, "f")
 	print("Quickfix list deleted")

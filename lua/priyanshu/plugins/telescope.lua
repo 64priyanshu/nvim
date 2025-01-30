@@ -42,15 +42,15 @@ function M.config()
 	})
 
 	-- Keymaps
-	vim.keymap.set("n", "<leader>sf", builtin.find_files, { silent = true })
-	vim.keymap.set("n", "<leader>st", builtin.live_grep, { silent = true })
-	vim.keymap.set("n", "<leader>sb", builtin.buffers, { silent = true })
-	vim.keymap.set("n", "<leader>sr", builtin.oldfiles, { silent = true })
-	vim.keymap.set("n", "<leader>sh", builtin.highlights, { silent = true })
-	vim.keymap.set("n", "<leader>sc", builtin.colorscheme, { silent = true })
+	vim.keymap.set("n", "<leader>ff", builtin.find_files, { silent = true })
+	vim.keymap.set("n", "<leader>ft", builtin.live_grep, { silent = true })
+	vim.keymap.set("n", "<leader>fb", builtin.buffers, { silent = true })
+	vim.keymap.set("n", "<leader>fr", builtin.oldfiles, { silent = true })
+	vim.keymap.set("n", "<leader>fh", builtin.highlights, { silent = true })
+	vim.keymap.set("n", "<leader>fc", builtin.colorscheme, { silent = true })
 
 	-- Telescope find files without preview
-	vim.keymap.set("n", "<leader>ff", function()
+	vim.keymap.set("n", "<leader>fp", function()
 		builtin.find_files({
 			previewer = false,
 		})
@@ -66,7 +66,7 @@ function M.config()
 	end, { silent = true })
 
 	-- Telescope search currently selected text
-	vim.keymap.set("v", "<leader>st", "y<ESC>:Telescope live_grep default_text=<c-r>0<CR>", { silent = true })
+	vim.keymap.set("v", "<leader>ft", "y<ESC>:Telescope live_grep default_text=<c-r>0<CR>", { silent = true })
 end
 
 return M
