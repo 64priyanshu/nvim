@@ -111,5 +111,5 @@ end, { silent = true })
 -- Clear Quickfix list
 vim.keymap.set("n", "<leader>ck", function()
 	vim.fn.setqflist({}, "f")
-	print("Quickfix list deleted")
+	print("Quickfix list deleted.")
 end, { silent = true })

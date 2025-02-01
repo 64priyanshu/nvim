@@ -32,8 +32,20 @@ function M.config()
 	})
 
 	-- Keymaps
-	vim.keymap.set("n", "<leader>ca", "<CMD>ColorizerAttachToBuffer<CR>", { noremap = true, silent = true })
-	vim.keymap.set("n", "<leader>cr", "<CMD>ColorizerReloadAllBuffers<CR>", { noremap = true, silent = true })
+	vim.keymap.set("n", "<leader>ca", function()
+		vim.cmd("ColorizerAttachToBuffer")
+		print("Colorizer attached to the buffer.")
+	end, { silent = true })
+
+	vim.keymap.set("n", "<leader>cr", function()
+		vim.cmd("ColorizerReloadAllBuffers")
+		print("Colorizer reloaded for all buffers.")
+	end, { silent = true })
+
+	vim.keymap.set("n", "<leader>ct", function()
+		vim.cmd("ColorizerToggle")
+		print("Colorizer toggled.")
+	end, { silent = true })
 end
 
 return M
