@@ -11,6 +11,23 @@ function M.config()
 		vim.fn.sign_define(hl, { text = icon, texthl = hl, numhl = hl })
 	end
 
+	vim.diagnostic.config({
+		virtual_text = true,
+		signs = true,
+		underline = true,
+		update_in_insert = true,
+		severity_sort = true,
+		float = {
+			focusable = true,
+			style = "minimal",
+			border = "single",
+			source = "always",
+			header = "",
+			prefix = "",
+			suffix = "",
+		},
+	})
+
 	local on_attach = function(client, bufnr)
 		local bufopts = { noremap = true, silent = true, buffer = bufnr }
 		vim.keymap.set("n", "gd", vim.lsp.buf.definition, bufopts)
