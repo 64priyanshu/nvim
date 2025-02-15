@@ -66,13 +66,10 @@ function M.config()
 	local capabilities = require("cmp_nvim_lsp").default_capabilities(capabilities_)
 
 	local langservers = {
-		"html",
-		"cssls",
 		"clangd",
 		"ts_ls",
-		"pyright",
-		-- "csharp_ls",
-		"intelephense",
+		"html",
+		"cssls",
 	}
 
 	local handlers = {

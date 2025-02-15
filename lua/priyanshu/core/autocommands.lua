@@ -1,13 +1,3 @@
--- Instead of 4, use 2 spaces as (auto)indentation in python files
-vim.api.nvim_create_autocmd("FileType", {
-	pattern = "python",
-	callback = function()
-		vim.opt_local.expandtab = true
-		vim.opt_local.tabstop = 2
-		vim.opt_local.shiftwidth = 2
-	end,
-})
-
 -- Prevent from automatically inserting comment leader when opening new line under a comment
 vim.api.nvim_create_autocmd("BufEnter", {
 	pattern = "*",
