@@ -49,6 +49,7 @@ function M.config()
 		vim.keymap.set("n", "gK", vim.lsp.buf.signature_help, bufopts)
 		vim.keymap.set("i", "<C-h>", vim.lsp.buf.signature_help, bufopts)
 		vim.keymap.set("n", "gr", require("telescope.builtin").lsp_references, bufopts)
+		vim.keymap.set("n", "<leader>ls", require("telescope.builtin").lsp_document_symbols, bufopts)
 		vim.keymap.set("n", "<leader>la", vim.lsp.buf.code_action, bufopts)
 		vim.keymap.set("n", "<leader>lr", vim.lsp.buf.rename, bufopts)
 		-- Diagnostic
