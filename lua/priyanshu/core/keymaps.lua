@@ -59,8 +59,8 @@ vim.keymap.set("v", ">", ">gv", { silent = true })
 vim.keymap.set("t", "<Esc>", "<C-\\><C-n>")
 
 -- Move around in Line wrap
-vim.keymap.set("n", "<A-j>", "gj")
-vim.keymap.set("n", "<A-k>", "gk")
+vim.keymap.set("n", "j", "v:count == 0 ? 'gj' : 'j'", { expr = true, silent = true })
+vim.keymap.set("n", "k", "v:count == 0 ? 'gk' : 'k'", { expr = true, silent = true })
 
 -- Resize split with Arrow Keys
 vim.keymap.set("n", "<Up>", "<CMD>resize +2<CR>", { silent = true })
