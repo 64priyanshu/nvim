@@ -87,6 +87,10 @@ vim.keymap.set(
 vim.keymap.set("n", "<leader>t-", "<CMD>belowright 10split | term<CR>", { silent = true })
 vim.keymap.set("n", "<leader>t|", "<CMD>botright 70vsplit | term<CR>", { silent = true })
 
+-- Remap to move horizontally in command-line mode without using arrow key
+vim.keymap.set("c", "<C-h>", "<Left>")
+vim.keymap.set("c", "<C-l>", "<Right>")
+
 -- Quickfix keymaps
 vim.keymap.set("n", "]q", "<CMD>cnext<CR>", { silent = true })
 vim.keymap.set("n", "[q", "<CMD>cprev<CR>", { silent = true })
