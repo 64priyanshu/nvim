@@ -4,6 +4,7 @@ local M = {
 	dependencies = {
 		"nvim-lua/plenary.nvim",
 		"nvim-tree/nvim-web-devicons",
+		{ "nvim-telescope/telescope-fzf-native.nvim", build = "make" },
 	},
 }
 
@@ -40,6 +41,9 @@ function M.config()
 			},
 		},
 	})
+
+	-- Load fzf extension for telescope
+	require("telescope").load_extension("fzf")
 
 	-- Keymaps
 	vim.keymap.set("n", "<leader>ff", builtin.find_files, { silent = true })
