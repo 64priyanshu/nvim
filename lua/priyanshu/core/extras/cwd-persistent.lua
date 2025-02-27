@@ -17,3 +17,10 @@ vim.api.nvim_create_autocmd("BufLeave", {
 		buffer_cwd[buf] = vim.fn.getcwd()
 	end,
 })
+
+-- Remove CWD entry when buffer is gone
+vim.api.nvim_create_autocmd({ "BufDelete", "BufWipeout" }, {
+	callback = function(args)
+		buffer_cwd[args.buf] = nil
+	end,
+})
