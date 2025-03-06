@@ -14,7 +14,8 @@ function M.config()
 			enable = true,
 			-- Disable treesitter highlight for large files and mentioned files
 			disable = function(lang, bufnr)
-				local langs = { "html" }
+				-- local langs = { "html" }
+				local langs = {}
 				if vim.tbl_contains(langs, lang) then
 					return true
 				end
