@@ -29,13 +29,9 @@ function M.config()
 				i = { -- Insert mode mappings
 					["<C-j>"] = actions.move_selection_next,
 					["<C-k>"] = actions.move_selection_previous,
-					["<a-k>"] = actions.preview_scrolling_up,
-					["<a-j>"] = actions.preview_scrolling_down,
 					["<Tab>"] = actions.select_default,
 				},
 				n = { -- Normal mode mappings
-					["<a-k>"] = actions.preview_scrolling_up,
-					["<a-j>"] = actions.preview_scrolling_down,
 					["<Tab>"] = actions.select_default,
 				},
 			},
