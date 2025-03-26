@@ -1,0 +1,31 @@
+{
+  "C with main()": {
+    "prefix": "init",
+    "body": [
+      "#include <stdio.h>",
+      "",
+      "int main() {",
+      "  $0",
+      "  printf(\"Hello World\\n\");",
+      "  return 0;",
+      "}"
+    ],
+    "description": "C with main() function for program initialization"
+  },
+
+  "C with a for-loop": {
+    "prefix": "fur",
+    "body": [
+      "#include <stdio.h>",
+      "",
+      "int main() {",
+      "  for (int ${1|i,x,y,z|} = 0; $1 < 10; $1++) {",
+      "    $0",
+      "    printf(\"Hello\\n\");",
+      "  }",
+      "  return 0;",
+      "}"
+    ],
+    "description": "C with main() function and a for loop"
+  }
+}

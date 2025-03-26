@@ -20,7 +20,12 @@ local M = {
 function M.config()
 	local cmp = require("cmp")
 	local lspkind = require("lspkind")
+	local luasnip = require("luasnip")
+
+	-- Load Friendly Snippets
 	require("luasnip.loaders.from_vscode").lazy_load()
+	-- Load Custom Snippets
+	require("luasnip.loaders.from_vscode").lazy_load({ paths = { "~/.config/nvim/snippets" } })
 
 	cmp.setup({
 		mapping = cmp.mapping.preset.insert({
@@ -37,7 +42,7 @@ function M.config()
 		},
 		snippet = {
 			expand = function(args)
-				require("luasnip").lsp_expand(args.body)
+				luasnip.lsp_expand(args.body)
 			end,
 		},
 		sources = {
@@ -62,10 +67,26 @@ function M.config()
 		},
 	})
 
+	-- Luasnip
+	vim.keymap.set({ "i" }, "<C-l>", function()
+		luasnip.expand()
+	end, { silent = true })
+	vim.keymap.set({ "i", "s" }, "<C-f>", function()
+		luasnip.jump(1)
+	end, { silent = true })
+	vim.keymap.set({ "i", "s" }, "<C-b>", function()
+		luasnip.jump(-1)
+	end, { silent = true })
+	vim.keymap.set({ "i", "s" }, "<S-Tab>", function()
+		if luasnip.choice_active() then
+			luasnip.change_choice(1)
+		end
+	end, { silent = true })
+
 	-- Enable snippets of html in mentioned filetypes
-	require("luasnip").filetype_extend("javascriptreact", { "html" })
-	require("luasnip").filetype_extend("typescriptreact", { "html" })
-	require("luasnip").filetype_extend("php", { "html" })
+	luasnip.filetype_extend("javascriptreact", { "html" })
+	luasnip.filetype_extend("typescriptreact", { "html" })
+	luasnip.filetype_extend("php", { "html" })
 end
 
 return M
