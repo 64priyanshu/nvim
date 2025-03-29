@@ -1,152 +1,90 @@
-local M = {
-	"neovim/nvim-lspconfig",
-	event = { "BufReadPre", "BufNewFile" },
+-- Capabilities
+local capabilities = vim.lsp.protocol.make_client_capabilities()
+capabilities.textDocument.foldingRange = {
+	dynamicRegistration = true,
+	lineFoldingOnly = true,
 }
+capabilities.textDocument.semanticTokens.multilineTokenSupport = true
+capabilities.textDocument.completion.completionItem.snippetSupport = true
 
-function M.config()
-	local border = {
-		{ "🭽", "FloatBorder" },
-		{ "▔", "FloatBorder" },
-		{ "🭾", "FloatBorder" },
-		{ "▕", "FloatBorder" },
-		{ "🭿", "FloatBorder" },
-		{ "▁", "FloatBorder" },
-		{ "🭼", "FloatBorder" },
-		{ "▏", "FloatBorder" },
-	}
+-- LSPs configuration
+vim.lsp.config("*", {
+	capabilities = capabilities,
+})
 
-	vim.diagnostic.config({
-		virtual_text = true,
-		underline = true,
-		update_in_insert = true,
-		severity_sort = true,
-		signs = {
-			numhl = {
-				[vim.diagnostic.severity.ERROR] = "DiagnosticSignError",
-				[vim.diagnostic.severity.WARN] = "DiagnosticSignWarn",
-				[vim.diagnostic.severity.HINT] = "DiagnosticSignHint",
-				[vim.diagnostic.severity.INFO] = "DiagnosticSignInfo",
-			},
-		},
-		float = {
-			focusable = true,
-			style = "minimal",
-			border = border,
-			source = "always",
-			header = "",
-			prefix = "",
-			suffix = "",
-		},
-	})
+-- Enabling LSPs
+vim.lsp.enable({
+	"lua_ls",
+	"clangd",
+	"ts_ls",
+	"html",
+	"cssls",
+	"emmet_language_server",
+})
 
-	-- Capabilities
-	local capabilities = vim.lsp.protocol.make_client_capabilities()
-	capabilities.textDocument.foldingRange = {
-		dynamicRegistration = true,
-		lineFoldingOnly = true,
-	}
-	capabilities.textDocument.semanticTokens.multilineTokenSupport = true
-	capabilities.textDocument.completion.completionItem.snippetSupport = true
+-- LSP commands
 
-	vim.api.nvim_create_autocmd("LspAttach", {
-		callback = function(ev)
-			local bufnr = ev.buf
-			local client = vim.lsp.get_client_by_id(ev.data.client_id)
-
-			if not client then
-				return
-			end
-
-			if client.server_capabilities.completionProvider then
-				vim.bo[bufnr].omnifunc = "v:lua.vim.lsp.omnifunc"
-			end
-			if client.server_capabilities.definitionProvider then
-				vim.bo[bufnr].tagfunc = "v:lua.vim.lsp.tagfunc"
-			end
-			--- Disable semantic tokens
-			client.server_capabilities.semanticTokensProvider = nil
-
-			local bufopts = { noremap = true, silent = true, buffer = bufnr }
-			vim.keymap.set("n", "gd", vim.lsp.buf.definition, bufopts)
-			vim.keymap.set("n", "gD", vim.lsp.buf.declaration, bufopts)
-			vim.keymap.set("n", "gi", vim.lsp.buf.implementation, bufopts)
-			vim.keymap.set("n", "gt", vim.lsp.buf.type_definition, bufopts)
-			vim.keymap.set("n", "<leader>ls", vim.lsp.buf.document_symbol, bufopts)
-			vim.keymap.set("n", "<leader>lS", vim.lsp.buf.workspace_symbol, bufopts)
-			vim.keymap.set("n", "gr", vim.lsp.buf.references, bufopts)
-			vim.keymap.set("n", "<leader>la", vim.lsp.buf.code_action, bufopts)
-			vim.keymap.set("n", "<leader>lr", vim.lsp.buf.rename, bufopts)
-			-- Lsp Hover Windows
-			vim.keymap.set("n", "K", function()
-				vim.lsp.buf.hover({
-					border = border,
-				})
-			end, bufopts)
-			vim.keymap.set("n", "gK", function()
-				vim.lsp.buf.signature_help({
-					border = border,
-				})
-			end, bufopts)
-			vim.keymap.set("i", "<C-h>", function()
-				vim.lsp.buf.signature_help({
-					border = border,
-				})
-			end, bufopts)
-			-- Diagnostic
-			vim.keymap.set("n", "<leader>ld", vim.diagnostic.open_float, bufopts)
-			vim.keymap.set("n", "]d", function()
-				vim.diagnostic.goto_next({ float = false })
-			end, bufopts)
-			vim.keymap.set("n", "[d", function()
-				vim.diagnostic.goto_prev({ float = false })
-			end, bufopts)
-		end,
-	})
-
-	-- LSPs config for languages
-	local langservers = {
-		"clangd",
-		"ts_ls",
-		"html",
-		"cssls",
-	}
-
-	for _, server in ipairs(langservers) do
-		require("lspconfig")[server].setup({
-			capabilities = capabilities,
-		})
+-- LspStop with arguments
+vim.api.nvim_create_user_command("LspStop", function(opts)
+	local clients = vim.lsp.get_clients({ bufnr = 0 })
+	for _, client in ipairs(clients) do
+		if opts.args == "" or opts.args == client.name then
+			client:stop(true)
+			print(client.name .. ": stopped")
+		end
 	end
+end, {
+	nargs = "?",
+	complete = function(_, _, _)
+		local clients = vim.lsp.get_clients({ bufnr = 0 })
+		local client_names = {}
+		for _, client in ipairs(clients) do
+			table.insert(client_names, client.name)
+		end
+		return client_names
+	end,
+})
 
-	require("lspconfig").lua_ls.setup({
-		capabilities = capabilities,
-		settings = {
-			Lua = {
-				diagnostics = {
-					globals = { "vim", "opt", "cmd" },
-				},
-			},
-			runtime = {
-				version = "LuaJIT",
-			},
-		},
-	})
+-- LspRestart to restart all clients
+vim.api.nvim_create_user_command("LspRestart", function()
+	local detach_clients = {}
+	for _, client in ipairs(vim.lsp.get_clients({ bufnr = 0 })) do
+		client:stop(true)
+		if vim.tbl_count(client.attached_buffers) > 0 then
+			detach_clients[client.name] = { client, vim.lsp.get_buffers_by_client_id(client.id) }
+		end
+	end
+	local timer = vim.uv.new_timer()
+	if not timer then
+		return print("Servers are stopped but havent been restarted")
+	end
+	timer:start(
+		100,
+		50,
+		vim.schedule_wrap(function()
+			for name, client in pairs(detach_clients) do
+				local client_id = vim.lsp.start(client[1].config, { attach = false })
+				if client_id then
+					for _, buf in ipairs(client[2]) do
+						vim.lsp.buf_attach_client(buf, client_id)
+					end
+					print(name .. ": restarted")
+				end
+				detach_clients[name] = nil
+			end
+			if next(detach_clients) == nil and not timer:is_closing() then
+				timer:close()
+			end
+		end)
+	)
+end, { nargs = 0 })
 
-	require("lspconfig").emmet_language_server.setup({
-		capabilities = capabilities,
-		filetypes = {
-			"css",
-			"eruby",
-			"html",
-			"htmldjango",
-			"javascriptreact",
-			"less",
-			"pug",
-			"sass",
-			"scss",
-			"typescriptreact",
-			"php",
-		},
-	})
-end
+-- LspLog in right vertical split window
+vim.api.nvim_create_user_command("LspLog", function()
+	vim.cmd("rightbelow vsplit " .. vim.lsp.log.get_filename())
+end, {})
 
-return M
+-- LspInfo -> checkhealth vim.lsp
+vim.api.nvim_create_user_command("LspInfo", function()
+	vim.cmd("silent checkhealth vim.lsp")
+end, {})

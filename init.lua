@@ -7,5 +7,9 @@ require("priyanshu.core.autocommands")
 require("priyanshu.core.extras.cwd-persistent")
 require("priyanshu.core.extras.session")
 
+--LSPs
+require("priyanshu.plugins.lsp.diagnostics")
+require("priyanshu.plugins.lsp.lspconfig")
+
 -- Lazy
 require("priyanshu.lazy")
