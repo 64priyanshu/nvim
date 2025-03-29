@@ -55,9 +55,6 @@ vim.keymap.set("n", "J", "mzJ`z")
 vim.keymap.set("v", "<", "<gv", { silent = true })
 vim.keymap.set("v", ">", ">gv", { silent = true })
 
--- Exit Terminal mode into Normal mode by pressing ESC key
-vim.keymap.set("t", "<Esc>", "<C-\\><C-n>")
-
 -- Move around in Line wrap
 vim.keymap.set("n", "j", "v:count == 0 ? 'gj' : 'j'", { expr = true, silent = true })
 vim.keymap.set("n", "k", "v:count == 0 ? 'gk' : 'k'", { expr = true, silent = true })
