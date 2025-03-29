@@ -35,6 +35,11 @@ vim.diagnostic.config({
 	},
 })
 
+-- Disable new default 0.11 keybindings
+for _, bind in ipairs({ "grn", "grr", "gri", "gra", "gO" }) do
+	pcall(vim.keymap.del, "n", bind)
+end
+
 -- Keymaps and others on LSP attach
 vim.api.nvim_create_autocmd("LspAttach", {
 	callback = function(ev)
@@ -59,8 +64,8 @@ vim.api.nvim_create_autocmd("LspAttach", {
 		vim.keymap.set("n", "gD", vim.lsp.buf.declaration, bufopts)
 		vim.keymap.set("n", "gi", vim.lsp.buf.implementation, bufopts)
 		vim.keymap.set("n", "gt", vim.lsp.buf.type_definition, bufopts)
-		vim.keymap.set("n", "<leader>ls", vim.lsp.buf.document_symbol, bufopts)
-		vim.keymap.set("n", "<leader>lS", vim.lsp.buf.workspace_symbol, bufopts)
+		vim.keymap.set("n", "gs", vim.lsp.buf.document_symbol, bufopts)
+		vim.keymap.set("n", "gS", vim.lsp.buf.workspace_symbol, bufopts)
 		vim.keymap.set("n", "gr", vim.lsp.buf.references, bufopts)
 		vim.keymap.set("n", "<leader>la", vim.lsp.buf.code_action, bufopts)
 		vim.keymap.set("n", "<leader>lr", vim.lsp.buf.rename, bufopts)
