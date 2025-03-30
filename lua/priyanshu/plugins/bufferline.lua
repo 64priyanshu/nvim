@@ -18,13 +18,6 @@ function M.config()
 			},
 			sort_by = "insert_at_end",
 
-			-- Hide terminal buffer in bufferline tab
-			custom_filter = function(buf_number, _)
-				if vim.bo[buf_number].filetype ~= "terminal" then
-					return true
-				end
-			end,
-
 			-- Diagnostics
 			diagnostics = "nvim_lsp",
 			diagnostics_update_on_event = true,
