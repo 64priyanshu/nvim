@@ -87,6 +87,7 @@ vim.api.nvim_create_autocmd("LspAttach", {
 
 		-- Diagnostic
 		vim.keymap.set("n", "grd", vim.diagnostic.open_float, bufopts)
+		vim.keymap.set("n", "grq", vim.diagnostic.setqflist, bufopts)
 		-- Defaults
 		-- [d - jump to previous diagnostic of current buffer
 		-- ]d - jump to next diagnostic of current buffer

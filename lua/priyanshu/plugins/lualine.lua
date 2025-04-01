@@ -11,7 +11,7 @@ function M.config()
 		sections = { "error", "warn", "info", "hint" },
 		symbols = { error = "E", warn = "W", info = "I", hint = "H" },
 		colored = true,
-		always_visible = true,
+		always_visible = false,
 	}
 
 	require("lualine").setup({
