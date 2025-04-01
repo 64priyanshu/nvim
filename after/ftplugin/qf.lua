@@ -1,6 +1,10 @@
 -- Add the cfilter plugin (see :Cfilter)
 vim.cmd.packadd("cfilter")
 
+-- Keymap to jump around error list (QF)
+vim.keymap.set("n", "[Q", "<CMD>colder<CR>", { silent = true })
+vim.keymap.set("n", "]Q", "<CMD>cnewer<CR>", { silent = true })
+
 -- Remove Quickfix entries
 local removeQfList = function()
 	local items = vim.fn.getqflist() -- Retrieves the current QuickFix list entries and stores them in the items table
