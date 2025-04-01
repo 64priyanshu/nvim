@@ -79,9 +79,9 @@ vim.api.nvim_create_user_command("LspRestart", function()
 	)
 end, { nargs = 0 })
 
--- LspLog in right vertical split window
+-- LspLog window in new tab
 vim.api.nvim_create_user_command("LspLog", function()
-	vim.cmd("rightbelow vsplit " .. vim.lsp.log.get_filename())
+	vim.cmd(("tabnew " .. vim.lsp.get_log_path()))
 end, {})
 
 -- LspInfo -> checkhealth vim.lsp
