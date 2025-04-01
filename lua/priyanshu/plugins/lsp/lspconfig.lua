@@ -29,7 +29,7 @@ vim.api.nvim_create_user_command("LspStop", function(opts)
 	local clients = vim.lsp.get_clients({ bufnr = 0 })
 	for _, client in ipairs(clients) do
 		if opts.args == "" or opts.args == client.name then
-			client:stop(true)
+			client:stop(false)
 			vim.notify(client.name .. ": stopped", vim.log.levels.WARN)
 		end
 	end
@@ -49,7 +49,7 @@ end, {
 vim.api.nvim_create_user_command("LspRestart", function()
 	local detach_clients = {}
 	for _, client in ipairs(vim.lsp.get_clients({ bufnr = 0 })) do
-		client:stop(true)
+		client:stop(false)
 		if vim.tbl_count(client.attached_buffers) > 0 then
 			detach_clients[client.name] = { client, vim.lsp.get_buffers_by_client_id(client.id) }
 		end
