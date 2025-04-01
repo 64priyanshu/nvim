@@ -35,11 +35,6 @@ vim.diagnostic.config({
 	},
 })
 
--- Disable new default 0.11 keybindings
-for _, bind in ipairs({ "grn", "grr", "gri", "gra", "gO" }) do
-	pcall(vim.keymap.del, "n", bind)
-end
-
 -- Keymaps and others on LSP attach
 vim.api.nvim_create_autocmd("LspAttach", {
 	callback = function(ev)
@@ -50,9 +45,11 @@ vim.api.nvim_create_autocmd("LspAttach", {
 			return
 		end
 
+		-- <C-x><C-o> for built-in completions menu
 		if client.server_capabilities.completionProvider then
 			vim.bo[bufnr].omnifunc = "v:lua.vim.lsp.omnifunc"
 		end
+		-- Uses tags and acts as go-to-definition
 		if client.server_capabilities.definitionProvider then
 			vim.bo[bufnr].tagfunc = "v:lua.vim.lsp.tagfunc"
 		end
@@ -62,13 +59,15 @@ vim.api.nvim_create_autocmd("LspAttach", {
 		local bufopts = { noremap = true, silent = true, buffer = bufnr }
 		vim.keymap.set("n", "gd", vim.lsp.buf.definition, bufopts)
 		vim.keymap.set("n", "gD", vim.lsp.buf.declaration, bufopts)
-		vim.keymap.set("n", "gi", vim.lsp.buf.implementation, bufopts)
-		vim.keymap.set("n", "gt", vim.lsp.buf.type_definition, bufopts)
 		vim.keymap.set("n", "gs", vim.lsp.buf.document_symbol, bufopts)
 		vim.keymap.set("n", "gS", vim.lsp.buf.workspace_symbol, bufopts)
-		vim.keymap.set("n", "gr", vim.lsp.buf.references, bufopts)
-		vim.keymap.set("n", "<leader>la", vim.lsp.buf.code_action, bufopts)
-		vim.keymap.set("n", "<leader>lr", vim.lsp.buf.rename, bufopts)
+		vim.keymap.set("n", "grt", vim.lsp.buf.type_definition, bufopts)
+		-- Defaults
+		-- gri -> go-to-implementation
+		-- grr -> go-to-references
+		-- gra -> code actions
+		-- grn -> lsp-rename
+
 		-- Lsp Hover Windows
 		vim.keymap.set("n", "K", function()
 			vim.lsp.buf.hover({
@@ -85,13 +84,11 @@ vim.api.nvim_create_autocmd("LspAttach", {
 				border = border,
 			})
 		end, bufopts)
+
 		-- Diagnostic
-		vim.keymap.set("n", "<leader>ld", vim.diagnostic.open_float, bufopts)
-		vim.keymap.set("n", "]d", function()
-			vim.diagnostic.goto_next({ float = false })
-		end, bufopts)
-		vim.keymap.set("n", "[d", function()
-			vim.diagnostic.goto_prev({ float = false })
-		end, bufopts)
+		vim.keymap.set("n", "grd", vim.diagnostic.open_float, bufopts)
+		-- Defaults
+		-- [d - jump to previous diagnostic of current buffer
+		-- ]d - jump to next diagnostic of current buffer
 	end,
 })
