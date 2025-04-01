@@ -66,12 +66,10 @@ vim.keymap.set("n", "<Right>", "<CMD>vertical resize +2<CR>", { silent = true })
 vim.keymap.set("n", "<Left>", "<CMD>vertical resize -2<CR>", { silent = true })
 
 -- Copy to system clipboard
-vim.keymap.set("n", "<leader>y", '"+y')
-vim.keymap.set("v", "<leader>y", '"+y')
+vim.keymap.set({ "n", "v" }, "<leader>y", '"+y')
 
 -- Keep the deleted text in black-hole register
-vim.keymap.set("n", "<leader>d", '"_d')
-vim.keymap.set("v", "<leader>d", '"_d')
+vim.keymap.set({ "n", "v" }, "<leader>d", '"_d')
 
 -- Copy current directory path to clipboard
 vim.keymap.set(
