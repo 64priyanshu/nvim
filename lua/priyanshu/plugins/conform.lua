@@ -25,10 +25,10 @@ function M.config()
 	vim.api.nvim_create_user_command("FormatDisable", function(args)
 		if args.bang then
 			vim.b.disable_autoformat = true
-			print("Autoformat on save disabled for the current buffer.")
+			vim.notify("Autoformat on save disabled for the current buffer.", vim.log.levels.WARN)
 		else
 			vim.g.disable_autoformat = true
-			print("Autoformat on save disabled globally.")
+			vim.notify("Autoformat on save disabled globally.", vim.log.levels.WARN)
 		end
 	end, {
 		bang = true,
@@ -36,7 +36,7 @@ function M.config()
 	vim.api.nvim_create_user_command("FormatEnable", function()
 		vim.b.disable_autoformat = false
 		vim.g.disable_autoformat = false
-		print("Autoformat on save enabled.")
+		vim.notify("Autoformat on save enabled.", vim.log.levels.INFO)
 	end, {})
 end
 

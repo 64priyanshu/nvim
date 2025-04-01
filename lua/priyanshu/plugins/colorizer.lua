@@ -34,17 +34,17 @@ function M.config()
 	-- Keymaps
 	vim.keymap.set("n", "<leader>ca", function()
 		vim.cmd("ColorizerAttachToBuffer")
-		print("Colorizer attached to the buffer.")
+		vim.notify("Colorizer attached to the buffer.", vim.log.levels.INFO)
 	end, { silent = true })
 
 	vim.keymap.set("n", "<leader>cr", function()
 		vim.cmd("ColorizerReloadAllBuffers")
-		print("Colorizer reloaded for all buffers.")
+		vim.notify("Colorizer reloaded for all buffers.", vim.log.levels.INFO)
 	end, { silent = true })
 
 	vim.keymap.set("n", "<leader>ct", function()
 		vim.cmd("ColorizerToggle")
-		print("Colorizer toggled.")
+		vim.notify("Colorizer toggled.", vim.log.levels.WARN)
 	end, { silent = true })
 end
 

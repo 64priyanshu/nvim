@@ -30,7 +30,7 @@ vim.api.nvim_create_user_command("LspStop", function(opts)
 	for _, client in ipairs(clients) do
 		if opts.args == "" or opts.args == client.name then
 			client:stop(true)
-			print(client.name .. ": stopped")
+			vim.notify(client.name .. ": stopped", vim.log.levels.WARN)
 		end
 	end
 end, {
@@ -56,7 +56,7 @@ vim.api.nvim_create_user_command("LspRestart", function()
 	end
 	local timer = vim.uv.new_timer()
 	if not timer then
-		return print("Servers are stopped but havent been restarted")
+		return vim.notify("Servers are stopped but haven't been restarted.", vim.log.levels.WARN)
 	end
 	timer:start(
 		100,
@@ -68,7 +68,7 @@ vim.api.nvim_create_user_command("LspRestart", function()
 					for _, buf in ipairs(client[2]) do
 						vim.lsp.buf_attach_client(buf, client_id)
 					end
-					print(name .. ": restarted")
+					vim.notify(name .. ": restarted", vim.log.levels.INFO)
 				end
 				detach_clients[name] = nil
 			end

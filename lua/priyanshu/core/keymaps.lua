@@ -15,13 +15,11 @@ vim.keymap.set("n", "<leader>lw", "<CMD>set wrap!<CR>", { silent = true })
 -- Toggle Read-Only mode for current buffer
 vim.keymap.set("n", "<leader>ro", function()
 	local modifiable = vim.bo.modifiable
-
 	vim.bo.modifiable = not modifiable
-
 	if vim.bo.modifiable then
-		print("[Modifiable]")
+		vim.notify("[Modifiable]", vim.log.levels.INFO)
 	else
-		print("[Read only]")
+		vim.notify("[Read only]", vim.log.levels.WARN)
 	end
 end, { silent = true })
 

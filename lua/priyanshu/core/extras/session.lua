@@ -21,7 +21,7 @@ vim.api.nvim_create_autocmd("SessionLoadPost", {
 vim.keymap.set("n", "<leader>ss", function()
 	if _G.current_session then
 		vim.cmd("mksession! " .. _G.current_session)
-		print("Session saved to: " .. _G.current_session)
+		vim.notify("Session saved to: " .. _G.current_session, vim.log.levels.INFO)
 	else
 		vim.ui.input({ prompt = "Session name: " }, function(session_name)
 			if session_name and session_name ~= "" then
@@ -30,9 +30,9 @@ vim.keymap.set("n", "<leader>ss", function()
 				local session_path = sessions_dir .. "/" .. session_filename
 				vim.cmd("mksession! " .. session_path)
 				_G.current_session = session_path
-				print("Session saved to: " .. _G.current_session)
+				vim.notify("Session saved to: " .. _G.current_session, vim.log.levels.INFO)
 			else
-				vim.api.nvim_echo({ { "Session name is required.", "ErrorMsg" } }, true, {})
+				vim.notify("Session name is required.", vim.log.levels.ERROR)
 			end
 		end)
 	end
