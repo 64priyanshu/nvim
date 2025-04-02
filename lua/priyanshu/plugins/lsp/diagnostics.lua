@@ -57,6 +57,8 @@ vim.api.nvim_create_autocmd("LspAttach", {
 		client.server_capabilities.semanticTokensProvider = nil
 
 		local bufopts = { noremap = true, silent = true, buffer = bufnr }
+
+		-- Keymaps
 		vim.keymap.set("n", "gd", vim.lsp.buf.definition, bufopts)
 		vim.keymap.set("n", "gD", vim.lsp.buf.declaration, bufopts)
 		vim.keymap.set("n", "gs", vim.lsp.buf.document_symbol, bufopts)
@@ -79,7 +81,7 @@ vim.api.nvim_create_autocmd("LspAttach", {
 				border = border,
 			})
 		end, bufopts)
-		vim.keymap.set("i", "<C-h>", function()
+		vim.keymap.set("i", "<C-k>", function()
 			vim.lsp.buf.signature_help({
 				border = border,
 			})

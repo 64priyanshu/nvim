@@ -65,7 +65,7 @@ function M.config()
 	end, { silent = true })
 
 	-- Telescope search currently selected text
-	vim.keymap.set("v", "<leader>ft", "y<ESC>:Telescope live_grep default_text=<c-r>0<CR>", { silent = true })
+	vim.keymap.set("x", "<leader>ft", "y<ESC>:Telescope live_grep default_text=<c-r>0<CR>", { silent = true })
 end
 
 return M

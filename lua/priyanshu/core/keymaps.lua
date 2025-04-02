@@ -24,8 +24,8 @@ vim.keymap.set("n", "<leader>ro", function()
 end, { silent = true })
 
 -- Move Lines in Visual mode
-vim.keymap.set("v", "J", ":m '>+1<CR>gv=gv")
-vim.keymap.set("v", "K", ":m '<-2<CR>gv=gv")
+vim.keymap.set("x", "J", ":m '>+1<CR>gv=gv")
+vim.keymap.set("x", "K", ":m '<-2<CR>gv=gv")
 
 -- This function fixes screen flickering when pressing <C-d> from top of the file
 local function lazy(keys)
@@ -50,8 +50,8 @@ vim.keymap.set("n", "N", "Nzzzv")
 vim.keymap.set("n", "J", "mzJ`z")
 
 -- Stay in Visual mode after changing Indent with < >
-vim.keymap.set("v", "<", "<gv", { silent = true })
-vim.keymap.set("v", ">", ">gv", { silent = true })
+vim.keymap.set("x", "<", "<gv", { silent = true })
+vim.keymap.set("x", ">", ">gv", { silent = true })
 
 -- Move around in Line wrap
 vim.keymap.set("n", "j", "v:count == 0 ? 'gj' : 'j'", { expr = true, silent = true })
@@ -64,10 +64,10 @@ vim.keymap.set("n", "<Right>", "<CMD>vertical resize +2<CR>", { silent = true })
 vim.keymap.set("n", "<Left>", "<CMD>vertical resize -2<CR>", { silent = true })
 
 -- Copy to system clipboard
-vim.keymap.set({ "n", "v" }, "<leader>y", '"+y')
+vim.keymap.set({ "n", "x" }, "<leader>y", '"+y')
 
 -- Keep the deleted text in black-hole register
-vim.keymap.set({ "n", "v" }, "<leader>d", '"_d')
+vim.keymap.set({ "n", "x" }, "<leader>d", '"_d')
 
 -- Copy current directory path to clipboard
 vim.keymap.set(
