@@ -40,6 +40,8 @@ function M.config()
 	vim.keymap.set("n", "[c", "<CMD>Gitsigns prev_hunk<CR>", { silent = true })
 	vim.keymap.set("n", "<leader>gb", "<CMD>Gitsigns blame_line<CR>", { silent = true })
 	vim.keymap.set("n", "<leader>gp", "<CMD>Gitsigns preview_hunk<CR>", { silent = true })
+	vim.keymap.set("n", "<leader>gq", "<CMD>Gitsigns setqflist<CR>", { silent = true })
+	vim.keymap.set("n", "<leader>gQ", "<CMD>Gitsigns setqflist all<CR>", { silent = true })
 end
 
 return M

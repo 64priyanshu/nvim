@@ -15,7 +15,6 @@ function M.config()
 	require("telescope").setup({
 		pickers = {
 			live_grep = {
-				file_ignore_patterns = { "node_modules", ".git", ".venv" },
 				additional_args = function(_)
 					return { "--hidden" }
 				end,
@@ -25,6 +24,7 @@ function M.config()
 			},
 		},
 		defaults = {
+			file_ignore_patterns = { "node_modules", ".git/", ".cache", "%.o", "%.out", "%.exe" },
 			mappings = {
 				i = { -- Insert mode mappings
 					["<C-j>"] = actions.move_selection_next,
@@ -52,6 +52,7 @@ function M.config()
 	-- Telescope find files without preview
 	vim.keymap.set("n", "<leader>fp", function()
 		builtin.find_files({
+			hidden = true,
 			previewer = false,
 		})
 	end, { silent = true })
@@ -60,8 +61,6 @@ function M.config()
 	vim.keymap.set("n", "<leader>fd", function()
 		builtin.find_files({
 			hidden = true,
-			file_ignore_patterns = { "node_modules", ".git", ".venv" },
-			previewer = false,
 		})
 	end, { silent = true })
 

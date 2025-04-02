@@ -7,22 +7,15 @@ local M = {
 function M.config()
 	require("ibl").setup({
 		indent = {
-			highlight = { "IblWhitespace" },
 			char = "▏",
+			highlight = { "IblWhitespace" },
 		},
 		exclude = { filetypes = { "markdown", "text" } },
 		scope = {
+			enabled = true,
 			show_start = false,
 			show_end = false,
-			injected_languages = true,
-			priority = 1024,
-			include = {
-				node_type = {
-					["*"] = {
-						"*",
-					},
-				},
-			},
+			highlight = { "IblScope" },
 		},
 
 		-- Highlights
