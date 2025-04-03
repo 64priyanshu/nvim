@@ -78,8 +78,8 @@ function M.config()
 					Operator = "󰆕",
 					TypeParameter = "󰊄",
 				}
-
-				-- vim_item.abbr = vim_item.abbr:match("[^(]+")
+				-- vim_item.abbr = vim_item.abbr:match("[^(]+") -- [[ fun(foo, bar) -> fun ]]
+				-- vim_item.abbr = vim_item.abbr:gsub("%b()", "()") -- [[ -> fun(foo, bar) -> fun() ]]
 				vim_item.kind = kind_icons[vim_item.kind] .. " " .. vim_item.kind
 				vim_item.menu = ({
 					buffer = "[BUF]",
