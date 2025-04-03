@@ -24,12 +24,15 @@ vim.lsp.enable({
 
 -- LSP commands
 
+-- LspStart
+-- Just run `:e` which reloads current buffer and re-attaches Lsp clients
+
 -- LspStop with arguments
 vim.api.nvim_create_user_command("LspStop", function(opts)
 	local clients = vim.lsp.get_clients({ bufnr = 0 })
 	for _, client in ipairs(clients) do
 		if opts.args == "" or opts.args == client.name then
-			client:stop(false)
+			client:stop(true)
 			vim.notify(client.name .. ": stopped", vim.log.levels.WARN)
 		end
 	end
@@ -49,14 +52,14 @@ end, {
 vim.api.nvim_create_user_command("LspRestart", function()
 	local detach_clients = {}
 	for _, client in ipairs(vim.lsp.get_clients({ bufnr = 0 })) do
-		client:stop(false)
+		client:stop(true)
 		if vim.tbl_count(client.attached_buffers) > 0 then
 			detach_clients[client.name] = { client, vim.lsp.get_buffers_by_client_id(client.id) }
 		end
 	end
 	local timer = vim.uv.new_timer()
 	if not timer then
-		return vim.notify("Servers are stopped but haven't been restarted.", vim.log.levels.WARN)
+		return vim.notify("Servers are stopped but haven't been restarted.", vim.log.levels.ERROR)
 	end
 	timer:start(
 		100,
@@ -77,7 +80,7 @@ vim.api.nvim_create_user_command("LspRestart", function()
 			end
 		end)
 	)
-end, { nargs = 0 })
+end, {})
 
 -- LspLog window in new tab
 vim.api.nvim_create_user_command("LspLog", function()
