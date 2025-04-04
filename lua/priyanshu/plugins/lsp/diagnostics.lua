@@ -56,7 +56,7 @@ vim.api.nvim_create_autocmd("LspAttach", {
 		--- Disable semantic tokens
 		client.server_capabilities.semanticTokensProvider = nil
 
-		local bufopts = { noremap = true, silent = true, buffer = bufnr }
+		local bufopts = { silent = true, buffer = bufnr }
 
 		-- Keymaps
 		vim.keymap.set("n", "gd", vim.lsp.buf.definition, bufopts)

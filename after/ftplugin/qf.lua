@@ -49,5 +49,5 @@ local removeQfList = function()
 end
 
 -- Set keymaps for removing Quickfix entries utilizing above function
-vim.keymap.set("n", "dd", removeQfList, { silent = true, buffer = true })
-vim.keymap.set("x", "d", removeQfList, { silent = true, buffer = true })
+vim.keymap.set("n", "dd", removeQfList, { buffer = true })
+vim.keymap.set("x", "d", removeQfList, { buffer = true })

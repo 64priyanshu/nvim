@@ -50,12 +50,12 @@ vim.keymap.set("n", "N", "Nzzzv")
 vim.keymap.set("n", "J", "mzJ`z")
 
 -- Stay in Visual mode after changing Indent with < >
-vim.keymap.set("x", "<", "<gv", { silent = true })
-vim.keymap.set("x", ">", ">gv", { silent = true })
+vim.keymap.set("x", "<", "<gv")
+vim.keymap.set("x", ">", ">gv")
 
 -- Move around in Line wrap
-vim.keymap.set("n", "j", "v:count == 0 ? 'gj' : 'j'", { expr = true, silent = true })
-vim.keymap.set("n", "k", "v:count == 0 ? 'gk' : 'k'", { expr = true, silent = true })
+vim.keymap.set("n", "j", "v:count == 0 ? 'gj' : 'j'", { expr = true })
+vim.keymap.set("n", "k", "v:count == 0 ? 'gk' : 'k'", { expr = true })
 
 -- Resize split with Arrow Keys
 vim.keymap.set("n", "<Up>", "<CMD>resize +2<CR>", { silent = true })
