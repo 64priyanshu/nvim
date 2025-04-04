@@ -1,5 +1,5 @@
 -- Toggle hlsearch
-vim.keymap.set("n", "<leader>h", "<CMD>set nohlsearch!<CR>", { silent = true })
+vim.keymap.set("n", "<Esc>", "<CMD>nohlsearch<CR>", { silent = true })
 
 -- Create split and move cursor to new split
 vim.keymap.set("n", "|", "<CMD>vsplit<CR><C-w>l", { silent = true })
