@@ -12,6 +12,7 @@ function M.config()
 			NormalFloat = { bg = "#32302f" },
 		},
 	})
+	-- Enabling colorscheme
 	vim.cmd("colorscheme gruvbox")
 end
 

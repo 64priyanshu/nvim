@@ -21,7 +21,7 @@ function M.config()
 		},
 	})
 
-	-- Custom commands to toggle format on save: FormatEnable, FormatDisable, FormatDisable! (for current buffer)
+	-- Custom command to Disable format on save: FormatDisable, FormatDisable! (for current buffer)
 	vim.api.nvim_create_user_command("FormatDisable", function(args)
 		if args.bang then
 			vim.b.disable_autoformat = true
@@ -33,6 +33,8 @@ function M.config()
 	end, {
 		bang = true,
 	})
+
+	-- Custom command to Enable format on save for all buffers: FormatEnable
 	vim.api.nvim_create_user_command("FormatEnable", function()
 		vim.b.disable_autoformat = false
 		vim.g.disable_autoformat = false

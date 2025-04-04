@@ -1,11 +1,11 @@
 -- Capabilities
 local capabilities = vim.lsp.protocol.make_client_capabilities()
+capabilities.textDocument.semanticTokens.multilineTokenSupport = true
+capabilities.textDocument.completion.completionItem.snippetSupport = true
 capabilities.textDocument.foldingRange = {
 	dynamicRegistration = true,
 	lineFoldingOnly = true,
 }
-capabilities.textDocument.semanticTokens.multilineTokenSupport = true
-capabilities.textDocument.completion.completionItem.snippetSupport = true
 
 -- LSPs configuration
 vim.lsp.config("*", {
