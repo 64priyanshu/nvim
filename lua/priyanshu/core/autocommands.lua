@@ -50,7 +50,7 @@ vim.api.nvim_create_autocmd({ "FileType" }, {
 	},
 	callback = function()
 		vim.api.nvim_buf_set_keymap(0, "n", "q", "<CMD>close<CR>", { noremap = true, silent = true })
-		vim.api.nvim_buf_set_keymap(0, "n", "<esc>", "<CMD>close<CR>", { noremap = true, silent = true })
+		vim.api.nvim_buf_set_keymap(0, "n", "<Esc>", "<CMD>close<CR>", { noremap = true, silent = true })
 		vim.cmd("setlocal nobuflisted")
 	end,
 })
@@ -59,7 +59,7 @@ vim.api.nvim_create_autocmd({ "FileType" }, {
 vim.api.nvim_create_autocmd("CmdWinEnter", {
 	callback = function()
 		vim.api.nvim_buf_set_keymap(0, "n", "q", "<CMD>close<CR>", { noremap = true, silent = true })
-		vim.api.nvim_buf_set_keymap(0, "n", "<ESC>", "<CMD>close<CR>", { noremap = true, silent = true })
+		vim.api.nvim_buf_set_keymap(0, "n", "<Esc>", "<CMD>close<CR>", { noremap = true, silent = true })
 	end,
 })
 
