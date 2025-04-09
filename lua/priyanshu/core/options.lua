@@ -11,7 +11,6 @@ vim.opt.relativenumber = true
 vim.opt.expandtab = true -- Convert tabs to spaces with '>' and '<' commands
 vim.opt.tabstop = 2 -- Number of spaces that a <Tab> in the file counts for
 vim.opt.shiftwidth = 2 -- Number of spaces to use for each step of (auto)indent
-vim.opt.laststatus = 3 -- Use a single statusline for all windows instead of having own separate statusline
 
 vim.opt.pumheight = 20 -- Completion window height
 vim.opt.signcolumn = "yes" -- Always show the sign column, otherwise it would shift the text each time
