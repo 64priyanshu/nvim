@@ -1,3 +1,6 @@
+-- LSP references
+-- https://github.com/neovim/nvim-lspconfig/tree/master/lua/lspconfig/configs
+
 -- Capabilities
 local capabilities = vim.lsp.protocol.make_client_capabilities()
 capabilities.textDocument.semanticTokens.multilineTokenSupport = true
@@ -13,14 +16,23 @@ vim.lsp.config("*", {
 })
 
 -- Enabling LSPs
-vim.lsp.enable({
-	"lua_ls",
-	"clangd",
-	"ts_ls",
-	"html",
-	"cssls",
-	"emmet_language_server",
-})
+-- Manual (name of server corresponds to name of files under lsp/ directory)
+-- vim.lsp.enable({
+-- 	"clangd",
+-- 	"cssls",
+-- 	"emmet_language_server",
+-- 	"html",
+-- 	"lua_ls",
+-- 	"ts_ls",
+-- })
+
+-- Automatic
+local lsp_configs = {}
+for _, f in pairs(vim.api.nvim_get_runtime_file("lsp/*.lua", true)) do
+	local server_name = vim.fn.fnamemodify(f, ":t:r")
+	table.insert(lsp_configs, server_name)
+end
+vim.lsp.enable(lsp_configs)
 
 -- LSP commands
 

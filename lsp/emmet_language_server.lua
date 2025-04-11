@@ -1,3 +1,5 @@
+-- https://github.com/neovim/nvim-lspconfig/blob/master/lua/lspconfig/configs/emmet_language_server.lua
+-- https://github.com/neovim/nvim-lspconfig/blob/master/lua/lspconfig/configs/emmet_language_server.lua#L2
 return {
 	cmd = { "emmet-language-server", "--stdio" },
 	filetypes = {
@@ -13,6 +15,6 @@ return {
 		"typescriptreact",
 		"htmlangular",
 	},
-	root_markers = { "package.json", ".git" },
+	root_markers = { ".git" },
 	single_file_support = true,
 }
