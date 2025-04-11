@@ -29,7 +29,7 @@ function M.config()
 			enable = true,
 			-- Disable treesitter indent for files with more than 5k lines and for mentioned filetypes
 			disable = function(lang, bufnr)
-				local langs = { "python", "css", "javascript" }
+				local langs = { "python", "css", "javascript", "json" }
 				return vim.api.nvim_buf_line_count(bufnr) > 5000 or vim.tbl_contains(langs, lang)
 			end,
 		},
