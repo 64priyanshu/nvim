@@ -1,31 +1,31 @@
 {
-  "C with main()": {
+  "C first main() function": {
     "prefix": "init",
     "body": [
       "#include <stdio.h>",
-      "",
       "int main() {",
-      "  $0",
-      "  printf(\"Hello World\\n\");",
-      "  return 0;",
+      "\t$0;",
+      "\treturn 0;",
       "}"
     ],
-    "description": "C with main() function for program initialization"
+    "description": "Creates a basic C program with int main() and return 0"
   },
-
-  "C with a for-loop": {
-    "prefix": "fur",
+  "Struct Declaration": {
+    "prefix": "mystruct",
     "body": [
-      "#include <stdio.h>",
-      "",
-      "int main() {",
-      "  for (int ${1|i,x,y,z|} = 0; $1 < 10; $1++) {",
-      "    $0",
-      "    printf(\"Hello\\n\");",
-      "  }",
-      "  return 0;",
+      "typedef struct ${1:StructName} {",
+      "\t$0;",
+      "} $2;"
+    ],
+    "description": "Declares a typedef struct with an alias"
+  },
+  "Custom For Loop": {
+    "prefix": "myfor",
+    "body": [
+      "for (int ${1|i,x,y,z|} = 0; $1 < 10; $1$2) {",
+      "\t$0;",
       "}"
     ],
-    "description": "C with main() function and a for loop"
+    "description": "Creates a custom for loop"
   }
 }
