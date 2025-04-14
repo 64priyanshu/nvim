@@ -39,5 +39,14 @@ vim.opt.guicursor = {
 	"r-o:hor20",
 }
 
+-- Fold and others
+vim.opt.foldmethod = "manual" -- Folds are created manually
+vim.opt.foldcolumn = "1" -- Always show foldcolumn
+vim.opt.fillchars:append({
+	foldopen = "⏷",
+	foldclose = "⏵",
+	foldsep = "▏",
+})
+
 -- Store undofiles in home/.vim/undodir/
 vim.opt.undodir = vim.fn.expand("$HOME") .. "/.vim/undodir"

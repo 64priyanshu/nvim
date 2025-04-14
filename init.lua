@@ -6,6 +6,7 @@ require("priyanshu.core.autocommands")
 -- Extras utilitis
 require("priyanshu.core.extras.cwd-persistent")
 require("priyanshu.core.extras.session")
+require("priyanshu.core.extras.view")
 
 --LSPs
 require("priyanshu.plugins.lsp.diagnostics")
