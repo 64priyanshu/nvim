@@ -56,9 +56,21 @@ vim.api.nvim_create_autocmd("LspAttach", {
 		--- Disable semantic tokens
 		client.server_capabilities.semanticTokensProvider = nil
 
-		local bufopts = { silent = true, buffer = bufnr }
+		-- Inlay Hints
+		if client and client:supports_method(vim.lsp.protocol.Methods.textDocument_inlayHint, bufnr) then
+			vim.keymap.set("n", "grh", function()
+				local enabled = vim.lsp.inlay_hint.is_enabled({ bufnr = bufnr })
+				vim.lsp.inlay_hint.enable(not enabled, { bufnr = bufnr })
+				if not enabled then
+					vim.notify("Inlay hints enabled for current buffer.", vim.log.levels.INFO)
+				else
+					vim.notify("Inlay hints disabled for current buffer.", vim.log.levels.INFO)
+				end
+			end, { buffer = bufnr })
+		end
 
 		-- Keymaps
+		local bufopts = { silent = true, buffer = bufnr }
 		vim.keymap.set("n", "gd", vim.lsp.buf.definition, bufopts)
 		vim.keymap.set("n", "gD", vim.lsp.buf.declaration, bufopts)
 		vim.keymap.set("n", "gs", vim.lsp.buf.document_symbol, bufopts)

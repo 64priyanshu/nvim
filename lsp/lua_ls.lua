@@ -5,7 +5,7 @@ return {
 	filetypes = { "lua" },
 	root_markers = { ".luarc.json", ".git" },
 	single_file_support = true,
-	settings = {
+	settings = { -- https://github.com/LuaLS/lua-language-server/wiki/Settings
 		Lua = {
 			runtime = {
 				version = "LuaJIT",
