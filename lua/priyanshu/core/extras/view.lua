@@ -1,6 +1,9 @@
 -- Store view files in  home/.vim/viewdir
 vim.opt.viewdir = vim.fn.expand("$HOME") .. "/.vim/viewdir"
 
+-- Remove LCD (local working directory) information from view save files (which is enabled by default)
+vim.opt.viewoptions:remove("curdir")
+
 -- Autocommand to save view state on exiting buffer window
 vim.api.nvim_create_autocmd("BufWinLeave", {
 	pattern = "*",
