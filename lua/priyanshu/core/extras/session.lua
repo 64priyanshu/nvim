@@ -5,23 +5,23 @@ local sessions_dir = vim.fn.expand("$HOME") .. "/.vim/sessions"
 vim.fn.mkdir(sessions_dir, "p")
 
 -- Variable to store the current session name
-_G.current_session = nil
+local current_session = nil
 
 -- Autocommand to detect and store the session file name in the Global variable when sourcing a session
 vim.api.nvim_create_autocmd("SessionLoadPost", {
 	callback = function()
 		local session_file = vim.v.this_session
 		if session_file ~= "" then
-			_G.current_session = session_file
+			current_session = session_file
 		end
 	end,
 })
 
 -- Keybinding with function to save a session that asks name in prompt
 vim.keymap.set("n", "<leader>ss", function()
-	if _G.current_session then
-		vim.cmd("mksession! " .. _G.current_session)
-		vim.notify("Session saved to: " .. _G.current_session, vim.log.levels.INFO)
+	if current_session then
+		vim.cmd("mksession! " .. current_session)
+		vim.notify("Session saved to: " .. current_session, vim.log.levels.INFO)
 	else
 		vim.ui.input({ prompt = "Session name: " }, function(session_name)
 			if session_name and session_name ~= "" then
@@ -29,8 +29,8 @@ vim.keymap.set("n", "<leader>ss", function()
 				local session_filename = session_name .. "_" .. date_time .. ".vim"
 				local session_path = sessions_dir .. "/" .. session_filename
 				vim.cmd("mksession! " .. session_path)
-				_G.current_session = session_path
-				vim.notify("Session saved to: " .. _G.current_session, vim.log.levels.INFO)
+				current_session = session_path
+				vim.notify("Session saved to: " .. current_session, vim.log.levels.INFO)
 			else
 				vim.notify("Session name is required.", vim.log.levels.ERROR)
 			end
