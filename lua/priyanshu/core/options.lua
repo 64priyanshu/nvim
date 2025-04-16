@@ -34,18 +34,18 @@ vim.opt.termguicolors = true
 
 -- Change Insert-mode cursor to a block cursor
 vim.opt.guicursor = {
-	"n-v-c:block",
-	"i-ci:block-blinkon1",
-	"r-o:hor20",
+  "n-v-c:block",
+  "i-ci:block-blinkon1",
+  "r-o:hor20",
 }
 
 -- Fold and others
 vim.opt.foldmethod = "manual" -- Folds are created manually
 vim.opt.foldcolumn = "1" -- Always show foldcolumn
 vim.opt.fillchars:append({
-	foldopen = "⏷",
-	foldclose = "⏵",
-	foldsep = "▏",
+  foldopen = "⏷",
+  foldclose = "⏵",
+  foldsep = "▏",
 })
 
 -- Store undofiles in home/.vim/undodir/

@@ -1,20 +1,20 @@
 local M = {
-	"ellisonleao/gruvbox.nvim",
-	lazy = false,
-	priority = 1000,
+  "ellisonleao/gruvbox.nvim",
+  lazy = false,
+  priority = 1000,
 }
 
 function M.config()
-	require("gruvbox").setup({
-		overrides = {
-			SignColumn = { bg = "#282828" },
-			FloatBorder = { fg = "#7e7764", bg = "#32302f" },
-			NormalFloat = { bg = "#32302f" },
-			FoldColumn = { bg = "NONE" },
-		},
-	})
-	-- Enabling colorscheme
-	vim.cmd("colorscheme gruvbox")
+  require("gruvbox").setup({
+    overrides = {
+      SignColumn = { bg = "#282828" },
+      FloatBorder = { fg = "#7e7764", bg = "#32302f" },
+      NormalFloat = { bg = "#32302f" },
+      FoldColumn = { bg = "NONE" },
+    },
+  })
+  -- Enabling colorscheme
+  vim.cmd("colorscheme gruvbox")
 end
 
 return M

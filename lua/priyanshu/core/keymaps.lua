@@ -14,13 +14,13 @@ vim.keymap.set("n", "<leader>lw", "<CMD>set wrap!<CR>", { silent = true })
 
 -- Toggle Read-Only mode for current buffer
 vim.keymap.set("n", "<leader>ro", function()
-	local modifiable = vim.bo.modifiable
-	vim.bo.modifiable = not modifiable
-	if vim.bo.modifiable then
-		vim.notify("[Modifiable]", vim.log.levels.INFO)
-	else
-		vim.notify("[Read only]", vim.log.levels.WARN)
-	end
+  local modifiable = vim.bo.modifiable
+  vim.bo.modifiable = not modifiable
+  if vim.bo.modifiable then
+    vim.notify("[Modifiable]", vim.log.levels.INFO)
+  else
+    vim.notify("[Read only]", vim.log.levels.WARN)
+  end
 end, { silent = true })
 
 -- Move Lines in Visual mode
@@ -29,13 +29,13 @@ vim.keymap.set("x", "K", ":m '<-2<CR>gv=gv")
 
 -- This function fixes screen flickering when pressing <C-d> from top of the file
 local function lazy(keys)
-	keys = vim.api.nvim_replace_termcodes(keys, true, false, true)
-	return function()
-		local old = vim.o.lazyredraw
-		vim.o.lazyredraw = true
-		vim.api.nvim_feedkeys(keys, "nx", false)
-		vim.o.lazyredraw = old
-	end
+  keys = vim.api.nvim_replace_termcodes(keys, true, false, true)
+  return function()
+    local old = vim.o.lazyredraw
+    vim.o.lazyredraw = true
+    vim.api.nvim_feedkeys(keys, "nx", false)
+    vim.o.lazyredraw = old
+  end
 end
 
 -- Cursor stays at the center of the screen
@@ -71,9 +71,9 @@ vim.keymap.set({ "n", "x" }, "<leader>d", '"_d')
 
 -- Copy current directory path to clipboard
 vim.keymap.set(
-	"n",
-	"<leader>cfp",
-	'<CMD>let @+ = expand("%:p:h")<CR><CMD>lua print("Copied path to: " .. vim.fn.expand("%:p:h"))<CR>'
+  "n",
+  "<leader>cfp",
+  '<CMD>let @+ = expand("%:p:h")<CR><CMD>lua print("Copied path to: " .. vim.fn.expand("%:p:h"))<CR>'
 )
 
 -- Terminal splits
