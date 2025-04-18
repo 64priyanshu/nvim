@@ -12,7 +12,7 @@ if not (vim.uv or vim.loop).fs_stat(lazypath) then
 end
 vim.opt.rtp:prepend(lazypath)
 
-require("lazy").setup({ { import = "priyanshu.plugins" }, { import = "priyanshu.plugins.lsp.mason" } }, {
+require("lazy").setup({ { import = "priyanshu.plugins" } }, {
   checker = {
     enabled = true,
     notify = false,
