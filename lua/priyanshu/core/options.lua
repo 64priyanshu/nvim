@@ -32,11 +32,11 @@ vim.opt.scrolloff = 8 -- Keep 8 lines above and below the cursor
 
 vim.opt.termguicolors = true
 
--- Change Insert-mode cursor to a block cursor
+-- Cursor changes
 vim.opt.guicursor = {
-  "n-v-c:block",
-  "i-ci:block-blinkon1",
-  "r-o:hor20",
+  "n-v-c:block,i-ci-ve-sm:block,r-cr:hor20,o:hor50",
+  "i-ci-ve:blinkwait700-blinkoff400-blinkon250",
+  "sm:blinkwait175-blinkoff150-blinkon175",
 }
 
 -- Fold and others
