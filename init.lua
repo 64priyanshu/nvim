@@ -7,6 +7,7 @@ require("priyanshu.core.autocommands")
 require("priyanshu.core.extras.cwd-persistent")
 require("priyanshu.core.extras.session")
 require("priyanshu.core.extras.view")
+require("priyanshu.core.extras.yank-ring")
 
 -- Lazy
 require("priyanshu.lazy")
