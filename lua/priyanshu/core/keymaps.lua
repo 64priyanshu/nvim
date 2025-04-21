@@ -19,7 +19,7 @@ vim.keymap.set("n", "<leader>lw", function()
   else
     vim.notify("Disabled line-wrap for this buffer.", vim.log.levels.INFO)
   end
-end, { silent = true })
+end)
 
 -- Toggle Read-Only mode for current buffer
 vim.keymap.set("n", "<leader>ro", function()
@@ -29,7 +29,7 @@ vim.keymap.set("n", "<leader>ro", function()
   else
     vim.notify("Read only.", vim.log.levels.WARN)
   end
-end, { silent = true })
+end)
 
 -- Copy to system clipboard
 vim.keymap.set({ "n", "x" }, "<leader>y", '"+y')
@@ -42,7 +42,7 @@ vim.keymap.set("n", "<leader>cfp", function()
   local path = vim.fn.expand("%:p:h")
   vim.fn.setreg("+", path)
   vim.notify("Copied path to clipboard:\n" .. path, vim.log.levels.INFO)
-end, { silent = true })
+end)
 
 -- Terminal splits
 vim.keymap.set("n", "<leader>t-", "<CMD>belowright 10split | term<CR>", { silent = true })
