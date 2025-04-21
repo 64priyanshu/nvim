@@ -9,9 +9,17 @@ vim.keymap.set("n", "<leader>h", "<CMD>nohlsearch<CR>", { silent = true })
 
 -- Search and replace word under the cursor
 vim.keymap.set("n", "<leader>sw", [[:%s/\<<C-r><C-w>\>//gI<Left><Left><Left>]])
+vim.keymap.set("x", "<leader>sw", [["1y:%s/\<<C-r>1\>//gI<Left><Left><Left>]])
 
 -- Line Wrap
-vim.keymap.set("n", "<leader>lw", "<CMD>set wrap!<CR>", { silent = true })
+vim.keymap.set("n", "<leader>lw", function()
+  vim.wo.wrap = not vim.wo.wrap
+  if vim.wo.wrap then
+    vim.notify("Enabled line-wrap for this buffer.", vim.log.levels.INFO)
+  else
+    vim.notify("Disabled line-wrap for this buffer.", vim.log.levels.INFO)
+  end
+end, { silent = true })
 
 -- Toggle Read-Only mode for current buffer
 vim.keymap.set("n", "<leader>ro", function()
