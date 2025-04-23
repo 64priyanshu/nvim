@@ -6,13 +6,16 @@ local M = {
 
 function M.config()
   require("gruvbox").setup({
-    -- All colors are faithful to Gruvbox and taken from https://github.com/morhetz/gruvbox
     overrides = {
-      Search = { fg = "#1d2021", bg = "#d79921", reverse = false },
-      IncSearch = { fg = "#1d2021", bg = "#d65d0e", reverse = false },
-      -- CurSearch linked to IncSearch, Substitute linked to Search
+      -- Search and Replace (From Gruvbox Material)
+      Search = { fg = "#282828", bg = "#a9b665", reverse = false },
+      CurSearch = { fg = "#282828", bg = "#ea6962", reverse = false },
+      IncSearch = { link = "CurSearch" },
+      Substitute = { fg = "#282828", bg = "#d8a657", reverse = false },
+      -- -- UI/Columns
       SignColumn = { bg = "NONE" },
       FoldColumn = { bg = "NONE" },
+      -- Float Window
       NormalFloat = { bg = "#32302f" },
       FloatBorder = { fg = "#7e7764", bg = "#32302f" },
     },
