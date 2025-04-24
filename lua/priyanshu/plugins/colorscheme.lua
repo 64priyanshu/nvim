@@ -6,18 +6,20 @@ local M = {
 
 function M.config()
   require("gruvbox").setup({
+    -- All overrides are faithful to gruvbox.nvim colorscheme
     overrides = {
-      -- Search and Replace (From Gruvbox Material)
-      Search = { fg = "#282828", bg = "#a9b665", reverse = false },
-      CurSearch = { fg = "#282828", bg = "#ea6962", reverse = false },
+      -- Search and Replace
+      Search = { fg = "#d5c4a1", bg = "#665c54", reverse = false }, -- fg = light2, bg = dark3
+      CurSearch = { fg = "#282828", bg = "#d79921", reverse = false }, -- fg = dark0, bg = neutral_yellow
       IncSearch = { link = "CurSearch" },
-      Substitute = { fg = "#282828", bg = "#d8a657", reverse = false },
+      Substitute = { link = "CurSearch" },
       -- -- UI/Columns
       SignColumn = { bg = "NONE" },
       FoldColumn = { bg = "NONE" },
+      Visual = { bg = "#504945", fg = "NONE" }, -- bg = dark2
       -- Float Window
-      NormalFloat = { bg = "#32302f" },
-      FloatBorder = { fg = "#7e7764", bg = "#32302f" },
+      NormalFloat = { bg = "#32302f" }, -- bg = dark0_soft
+      FloatBorder = { fg = "#7c6f64", bg = "#32302f" }, --fg = dark4, bg = dark0_soft
     },
   })
   -- Enabling colorscheme
