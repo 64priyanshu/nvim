@@ -18,6 +18,35 @@ function M.config()
   local cmp = require("cmp")
   local luasnip = require("luasnip")
 
+  -- Completion Icons
+  local kind_icons = {
+    Text = "󰉿",
+    Method = "󰆧",
+    Function = "󰊕",
+    Constructor = "",
+    Field = "󰜢",
+    Variable = "󰀫",
+    Class = "󰠱",
+    Interface = "",
+    Module = "",
+    Property = "󰜢",
+    Unit = "󰑭",
+    Value = "󰎠",
+    Enum = "",
+    Keyword = "󰌋",
+    Snippet = "",
+    Color = "󰏘",
+    File = "󰈙",
+    Reference = "󰈇",
+    Folder = "󰉋",
+    EnumMember = "",
+    Constant = "󰏿",
+    Struct = "󰙅",
+    Event = "",
+    Operator = "󰆕",
+    TypeParameter = "󰊄",
+  }
+
   -- Load Friendly Snippets
   require("luasnip.loaders.from_vscode").lazy_load()
   -- Load Custom Snippets
@@ -51,46 +80,6 @@ function M.config()
     formatting = {
       fields = { "abbr", "kind", "menu" },
       format = function(entry, vim_item)
-        -- Completion Icons
-        local kind_icons = {
-          Text = "󰉿",
-          Method = "󰆧",
-          Function = "󰊕",
-          Constructor = "",
-          Field = "󰜢",
-          Variable = "󰀫",
-          Class = "󰠱",
-          Interface = "",
-          Module = "",
-          Property = "󰜢",
-          Unit = "󰑭",
-          Value = "󰎠",
-          Enum = "",
-          Keyword = "󰌋",
-          Snippet = "",
-          Color = "󰏘",
-          File = "󰈙",
-          Reference = "󰈇",
-          Folder = "󰉋",
-          EnumMember = "",
-          Constant = "󰏿",
-          Struct = "󰙅",
-          Event = "",
-          Operator = "󰆕",
-          TypeParameter = "󰊄",
-        }
-
-        -- Abbr label and detail
-        if
-          entry.source.name == "nvim_lsp"
-          and entry.completion_item.labelDetails
-          and entry.completion_item.labelDetails.detail
-        then
-          vim_item.abbr = entry.completion_item.label .. entry.completion_item.labelDetails.detail
-          -- vim_item.abbr = vim_item.abbr:gsub("%b()", "") -- fun(foo, bar) -> fun
-          -- vim_item.abbr = vim_item.abbr:gsub("%b()", "()") -- fun(foo, bar) -> fun()
-        end
-
         -- Kind icons and Kind detail
         vim_item.kind = kind_icons[vim_item.kind] .. " " .. vim_item.kind
 
@@ -102,6 +91,17 @@ function M.config()
           luasnip = "[SNIP]",
           path = "[PATH]",
         })[entry.source.name]
+
+        -- Abbr label and detail
+        if
+          entry.source.name == "nvim_lsp"
+          and entry.completion_item.labelDetails
+          and entry.completion_item.labelDetails.detail
+        then
+          vim_item.abbr = entry.completion_item.label .. entry.completion_item.labelDetails.detail
+          -- vim_item.abbr = vim_item.abbr:gsub("%b()", "") -- fun(foo, bar) -> fun
+          -- vim_item.abbr = vim_item.abbr:gsub("%b()", "()") -- fun(foo, bar) -> fun()
+        end
 
         return vim_item
       end,
