@@ -5,9 +5,15 @@ local M = {
 }
 
 function M.config()
-  require("bufferline").setup({
+  local bufferline = require("bufferline")
+  bufferline.setup({
     options = {
       always_show_bufferline = false,
+      sort_by = "insert_at_end",
+      style_preset = {
+        bufferline.style_preset.no_italic,
+        bufferline.style_preset.no_bold,
+      },
       offsets = {
         {
           filetype = "NvimTree",
@@ -16,7 +22,6 @@ function M.config()
           padding = 1,
         },
       },
-      sort_by = "insert_at_end",
 
       -- Diagnostics
       diagnostics = "nvim_lsp",
