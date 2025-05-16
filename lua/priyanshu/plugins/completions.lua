@@ -17,6 +17,7 @@ local M = {
 function M.config()
   local cmp = require("cmp")
   local luasnip = require("luasnip")
+  local luasnip_loaders = require("luasnip.loaders.from_vscode")
 
   -- Completion Icons
   local kind_icons = {
@@ -48,9 +49,9 @@ function M.config()
   }
 
   -- Load Friendly Snippets
-  require("luasnip.loaders.from_vscode").lazy_load()
+  luasnip_loaders.lazy_load()
   -- Load Custom Snippets
-  require("luasnip.loaders.from_vscode").lazy_load({ paths = { vim.fn.stdpath("config") .. "/snippets" } })
+  luasnip_loaders.lazy_load({ paths = { vim.fn.stdpath("config") .. "/snippets" } })
 
   cmp.setup({
     mapping = cmp.mapping.preset.insert({

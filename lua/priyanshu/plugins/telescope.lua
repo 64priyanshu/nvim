@@ -9,10 +9,11 @@ local M = {
 }
 
 function M.config()
+  local telescope = require("telescope")
   local actions = require("telescope.actions")
   local builtin = require("telescope.builtin")
 
-  require("telescope").setup({
+  telescope.setup({
     pickers = {
       live_grep = {
         additional_args = function(_)
@@ -39,7 +40,7 @@ function M.config()
   })
 
   -- Load fzf extension for telescope
-  require("telescope").load_extension("fzf")
+  telescope.load_extension("fzf")
 
   -- Keymaps
   vim.keymap.set("n", "<leader>ff", builtin.find_files)
