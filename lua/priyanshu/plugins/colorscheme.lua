@@ -19,7 +19,9 @@ function M.config()
       Visual = { bg = "#504945", fg = "NONE" }, -- bg = dark2
       -- Float Window
       NormalFloat = { bg = "#32302f" }, -- bg = dark0_soft
-      FloatBorder = { fg = "#7c6f64", bg = "#32302f" }, --fg = dark4, bg = dark0_soft
+      FloatBorder = { fg = "#7c6f64", bg = "#32302f" }, -- fg = dark4, bg = dark0_soft
+      -- Language Specific
+      ["@markup.link.label.html"] = { fg = "#ebdbb2", underline = true, sp = "#83a598" }, -- fg = light1, sp = bright_blue
     },
   })
   -- Enabling colorscheme
