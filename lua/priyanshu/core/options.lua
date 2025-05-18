@@ -58,12 +58,9 @@ vim.opt.smartcase = true -- Searches are case-insensitive unless there's a capit
 
 -- Folds
 function _G.customFold()
-  -- Get the first and last lines of the fold
   local start_line = vim.fn.getline(vim.v.foldstart)
   local end_line = vim.fn.getline(vim.v.foldend)
-  -- Calculate the number of lines in the fold
   local line_count = vim.v.foldend - vim.v.foldstart + 1
-  -- Return the formatted fold text
   return start_line .. " ... " .. end_line .. " 󰁂 " .. line_count .. " lines "
 end
 
