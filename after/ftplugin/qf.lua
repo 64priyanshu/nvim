@@ -5,53 +5,51 @@ vim.cmd.packadd("cfilter")
 vim.keymap.set("n", "[Q", "<CMD>colder<CR>", { silent = true })
 vim.keymap.set("n", "]Q", "<CMD>cnewer<CR>", { silent = true })
 
--- Remove Quickfix entries
-local removeQfList = function()
-  local qf_info = vim.fn.getqflist({ items = true, title = true })
-  local qf_items = qf_info.items -- Retrieve the current QuickFix list entries and store them in the items table
-  local qf_title = qf_info.title -- Retrieve the current QuickFix list entries title before modifications
-
-  local mode = vim.fn.mode() -- Retrieve current mode
+-- Remove entries from the quickfix(qf) list
+local function remove_qf_items()
+  -- Get current qf list items and title
+  local qf = vim.fn.getqflist({ items = true, title = true })
+  local items, title = qf.items, qf.title
+  -- Get current mode
+  local mode = vim.fn.mode()
+  -- Item(s) selection range
   local start_line, end_line
 
-  if mode == "v" or mode == "V" then -- Check if Visual or Visual-Line mode
-    start_line = vim.fn.line("v") -- Get the starting line of the visual selection
-    end_line = vim.fn.line(".") -- Get the current cursor line (end of selection)
-    -- Ensure start_line is always ≤ end_line by swapping if needed
+  if mode:match("[vV]") then -- Visual/Visual Line mode
+    start_line, end_line = vim.fn.line("v"), vim.fn.line(".")
     if start_line > end_line then
       start_line, end_line = end_line, start_line
     end
   else -- Normal mode
     start_line = vim.fn.line(".")
-    end_line = start_line -- Set both start and end lines to current line
+    end_line = start_line
   end
 
   -- Ensure we don't remove out-of-range items
-  local qf_len = #qf_items
-  start_line = math.max(1, math.min(start_line, qf_len))
-  end_line = math.max(1, math.min(end_line, qf_len))
+  start_line = math.max(1, math.min(start_line, #items))
+  end_line = math.max(1, math.min(end_line, #items))
 
-  for i = end_line, start_line, -1 do -- Remove items in reverse order to avoid index shifting issues
-    table.remove(qf_items, i) -- Remove the item at position i from the items table
+  -- Remove qf items in reverse order to avoid index shifting issues
+  for i = end_line, start_line, -1 do
+    table.remove(items, i)
   end
 
-  -- Update current quickfix list with our modified items table keeping the title same, "r" flag means replace existing list
-  vim.fn.setqflist({}, "r", { items = qf_items, title = qf_title })
+  -- Replace the current qf list with our new modified items table keeping the same qf list name
+  vim.fn.setqflist({}, "r", { items = items, title = title })
 
-  -- Prevent cursor going out-of-bounds
-  if #qf_items > 0 then
-    local new_line = math.min(start_line, #qf_items)
-    vim.api.nvim_win_set_cursor(0, { new_line, 0 })
+  -- Prevent cursor going out-of-bounds and close qf window if all items are deleted
+  if #items > 0 then
+    vim.api.nvim_win_set_cursor(0, { math.min(start_line, #items), 0 })
   else
-    vim.cmd("cclose") -- Close QuickFix list if empty
+    vim.cmd("cclose")
   end
 
-  -- If in visual mode, return to normal mode
-  if mode == "v" or mode == "V" then
+  -- Exit Visual mode after the operation
+  if mode:match("[vV]") then
     vim.api.nvim_feedkeys(vim.api.nvim_replace_termcodes("<Esc>", true, false, true), "n", false)
   end
 end
 
 -- Set keymaps for removing Quickfix entries utilizing above function
-vim.keymap.set("n", "dd", removeQfList, { buffer = true })
-vim.keymap.set("x", "d", removeQfList, { buffer = true })
+vim.keymap.set("n", "dd", remove_qf_items, { buffer = true })
+vim.keymap.set("x", "d", remove_qf_items, { buffer = true })
