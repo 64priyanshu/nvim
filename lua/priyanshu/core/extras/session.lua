@@ -9,6 +9,7 @@ local current_session = nil
 
 -- Autocommand to detect and store the session file name in the Global variable when sourcing a session
 vim.api.nvim_create_autocmd("SessionLoadPost", {
+  group = vim.api.nvim_create_augroup("LoadSession", { clear = true }),
   callback = function()
     local session_file = vim.v.this_session
     if session_file ~= "" then

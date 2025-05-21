@@ -37,6 +37,7 @@ vim.diagnostic.config({
 
 -- Keymaps and others on LSP attach
 vim.api.nvim_create_autocmd("LspAttach", {
+  group = vim.api.nvim_create_augroup("LspAttach", { clear = true }),
   callback = function(ev)
     local bufnr = ev.buf
     local client = vim.lsp.get_client_by_id(ev.data.client_id)

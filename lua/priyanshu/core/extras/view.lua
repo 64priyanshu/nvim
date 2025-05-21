@@ -6,6 +6,7 @@ vim.opt.viewoptions:remove("curdir")
 
 -- Autocommand to save view state on exiting buffer window
 vim.api.nvim_create_autocmd("BufWinLeave", {
+  group = vim.api.nvim_create_augroup("SaveViewState", { clear = true }),
   pattern = "*",
   callback = function()
     if vim.bo.filetype ~= "" and vim.bo.buftype == "" then
@@ -16,6 +17,7 @@ vim.api.nvim_create_autocmd("BufWinLeave", {
 
 -- Autocommand to load view state and center screen on entering a buffer window
 vim.api.nvim_create_autocmd("BufWinEnter", {
+  group = vim.api.nvim_create_augroup("LoadViewState", { clear = true }),
   pattern = "*",
   callback = function()
     if vim.bo.filetype ~= "" and vim.bo.buftype == "" then

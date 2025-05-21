@@ -7,6 +7,7 @@ end
 
 -- Create autocmd for TextYankPost event
 vim.api.nvim_create_autocmd("TextYankPost", {
+  group = vim.api.nvim_create_augroup("YankRing", { clear = true }),
   callback = function()
     local event = vim.v.event
     if event.operator == "y" then

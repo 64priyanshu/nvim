@@ -1,5 +1,6 @@
 -- Prevent from automatically inserting comment leader when opening new line under a comment
 vim.api.nvim_create_autocmd("BufEnter", {
+  group = vim.api.nvim_create_augroup("NoAutoComment", { clear = true }),
   pattern = "*",
   callback = function()
     vim.cmd("set formatoptions-=cro")
@@ -8,6 +9,7 @@ vim.api.nvim_create_autocmd("BufEnter", {
 
 -- Highlight on yank
 vim.api.nvim_create_autocmd("TextYankPost", {
+  group = vim.api.nvim_create_augroup("YankHighlight", { clear = true }),
   pattern = "*",
   callback = function()
     vim.highlight.on_yank({
@@ -19,6 +21,7 @@ vim.api.nvim_create_autocmd("TextYankPost", {
 
 -- Remove trailing whitespaces before saving a file
 vim.api.nvim_create_autocmd("BufWritePre", {
+  group = vim.api.nvim_create_augroup("TrimWhitespace", { clear = true }),
   pattern = "*",
   callback = function()
     local pos = vim.api.nvim_win_get_cursor(0) -- Get the current cursor position
@@ -29,6 +32,7 @@ vim.api.nvim_create_autocmd("BufWritePre", {
 
 -- Exit these windows/buffers pressing <ESC> or q
 vim.api.nvim_create_autocmd({ "FileType" }, {
+  group = vim.api.nvim_create_augroup("CloseWinOnEsc", { clear = true }),
   pattern = {
     "help",
     "lspinfo",
@@ -45,6 +49,7 @@ vim.api.nvim_create_autocmd({ "FileType" }, {
 
 -- Exit command-line window pressing <ESC> or q
 vim.api.nvim_create_autocmd("CmdWinEnter", {
+  group = vim.api.nvim_create_augroup("CloseCmdOnEsc", { clear = true }),
   callback = function()
     vim.api.nvim_buf_set_keymap(0, "n", "q", "<CMD>close<CR>", { noremap = true, silent = true })
     vim.api.nvim_buf_set_keymap(0, "n", "<Esc>", "<CMD>close<CR>", { noremap = true, silent = true })
@@ -54,6 +59,7 @@ vim.api.nvim_create_autocmd("CmdWinEnter", {
 
 -- Set filetype=terminal for terminal windows/buffers
 vim.api.nvim_create_autocmd("TermOpen", {
+  group = vim.api.nvim_create_augroup("Terminal", { clear = true }),
   pattern = "term://*",
   callback = function()
     if vim.opt.buftype:get() == "terminal" then
