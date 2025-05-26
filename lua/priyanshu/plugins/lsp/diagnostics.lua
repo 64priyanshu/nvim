@@ -54,7 +54,7 @@ vim.api.nvim_create_autocmd("LspAttach", {
     if client.server_capabilities.definitionProvider then
       vim.bo[bufnr].tagfunc = "v:lua.vim.lsp.tagfunc"
     end
-    --- Disable semantic tokens
+    -- Disable semantic tokens
     client.server_capabilities.semanticTokensProvider = nil
 
     -- Inlay Hints

@@ -12,6 +12,6 @@ require("priyanshu.core.extras.yank-ring")
 -- Lazy
 require("priyanshu.lazy")
 
---LSPs
+-- LSPs
 require("priyanshu.plugins.lsp.diagnostics")
 require("priyanshu.plugins.lsp.lspconfig")
