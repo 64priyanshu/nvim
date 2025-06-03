@@ -32,65 +32,82 @@ for _, f in pairs(vim.api.nvim_get_runtime_file("lsp/*.lua", true)) do
 end
 vim.lsp.enable(lsp_configs)
 
--- LSP commands
+-- modified LSP commands taken from https://github.com/neovim/nvim-lspconfig/blob/master/plugin/lspconfig.lua
+local complete_client = function(arg)
+  return vim
+    .iter(vim.lsp.get_clients())
+    :map(function(client)
+      return client.name
+    end)
+    :filter(function(name)
+      return name:sub(1, #arg) == arg
+    end)
+    :totable()
+end
 
--- LspStart
--- Just run `:e` which reloads current buffer and re-attaches Lsp clients
+local complete_config = function(arg)
+  return vim
+    .iter(vim.api.nvim_get_runtime_file(("lsp/%s*.lua"):format(arg), true))
+    :map(function(path)
+      local file_name = path:match("[^/]*.lua$")
+      return file_name:sub(0, #file_name - 4)
+    end)
+    :totable()
+end
 
--- LspStop with arguments
-vim.api.nvim_create_user_command("LspStop", function(opts)
-  local clients = vim.lsp.get_clients({ bufnr = 0 })
-  for _, client in ipairs(clients) do
-    if opts.args == "" or opts.args == client.name then
-      client:stop(true)
-      vim.notify(client.name .. ": stopped", vim.log.levels.WARN)
+-- LspStart with single argument
+vim.api.nvim_create_user_command("LspStart", function(info)
+  if vim.lsp.config[info.args] == nil then
+    vim.notify(("Invalid server: '%s'"):format(info.args), vim.log.levels.ERROR)
+    return
+  end
+  vim.lsp.enable(info.args)
+  vim.notify(("Sucessfully enabled server: '%s'"):format(info.args), vim.log.levels.INFO)
+end, {
+  nargs = "?",
+  complete = complete_config,
+})
+
+-- LspStop with multiple arguments
+vim.api.nvim_create_user_command("LspStop", function(info)
+  for _, name in ipairs(info.fargs) do
+    if vim.lsp.config[name] == nil then
+      vim.notify(("Invalid server: '%s'"):format(name), vim.log.levels.ERROR)
+    else
+      vim.lsp.enable(name, false)
+      vim.notify(("Sucessfully stopped server: '%s'"):format(name), vim.log.levels.WARN)
     end
   end
 end, {
-  nargs = "?",
-  complete = function(_, _, _)
-    local clients = vim.lsp.get_clients({ bufnr = 0 })
-    local client_names = {}
-    for _, client in ipairs(clients) do
-      table.insert(client_names, client.name)
-    end
-    return client_names
-  end,
+  nargs = "+",
+  complete = complete_client,
 })
 
--- LspRestart to restart all clients
-vim.api.nvim_create_user_command("LspRestart", function()
-  local detach_clients = {}
-  for _, client in ipairs(vim.lsp.get_clients({ bufnr = 0 })) do
-    client:stop(true)
-    if vim.tbl_count(client.attached_buffers) > 0 then
-      detach_clients[client.name] = { client, vim.lsp.get_buffers_by_client_id(client.id) }
+-- LspRestart with arguments
+vim.api.nvim_create_user_command("LspRestart", function(info)
+  for _, name in ipairs(info.fargs) do
+    if vim.lsp.config[name] == nil then
+      vim.notify(("Invalid server: '%s'"):format(name), vim.log.levels.ERROR)
+      return
+    else
+      vim.lsp.enable(name, false)
+      vim.notify(("Sucessfully stopped server: '%s'"):format(name), vim.log.levels.WARN)
     end
   end
-  local timer = vim.uv.new_timer()
-  if not timer then
-    return vim.notify("Servers are stopped but haven't been restarted.", vim.log.levels.ERROR)
-  end
-  timer:start(
-    100,
-    50,
-    vim.schedule_wrap(function()
-      for name, client in pairs(detach_clients) do
-        local client_id = vim.lsp.start(client[1].config, { attach = false })
-        if client_id then
-          for _, buf in ipairs(client[2]) do
-            vim.lsp.buf_attach_client(buf, client_id)
-          end
-          vim.notify(name .. ": restarted", vim.log.levels.INFO)
-        end
-        detach_clients[name] = nil
-      end
-      if next(detach_clients) == nil and not timer:is_closing() then
-        timer:close()
-      end
-    end)
-  )
-end, {})
+
+  local timer = assert(vim.uv.new_timer())
+  timer:start(500, 0, function()
+    for _, name in ipairs(info.fargs) do
+      vim.schedule_wrap(function(x)
+        vim.lsp.enable(x)
+        vim.notify(("Sucessfully enabled server: '%s'\n"):format(x), vim.log.levels.INFO)
+      end)(name)
+    end
+  end)
+end, {
+  nargs = "+",
+  complete = complete_client,
+})
 
 -- LspLog window in new tab
 vim.api.nvim_create_user_command("LspLog", function()
