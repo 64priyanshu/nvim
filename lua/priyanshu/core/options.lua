@@ -56,6 +56,9 @@ vim.opt.hlsearch = true -- Highlights all occurrences of the search pattern
 vim.opt.ignorecase = true -- Searches are case-insensitive
 vim.opt.smartcase = true -- Searches are case-insensitive unless there's a capital letter
 
+-- Fuzzy Find
+vim.opt.path = "*,,**"
+
 -- Grep
 vim.opt.grepprg = "rg --vimgrep"
 vim.opt.grepformat = "%f:%l:%c:%m"
