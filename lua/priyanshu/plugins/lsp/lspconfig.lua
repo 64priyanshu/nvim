@@ -64,13 +64,23 @@ vim.api.nvim_create_user_command("LspStart", function(info)
   vim.lsp.enable(info.args)
   vim.notify(("Sucessfully enabled server: '%s'"):format(info.args), vim.log.levels.INFO)
 end, {
-  nargs = "?",
+  nargs = 1,
   complete = complete_config,
 })
 
--- LspStop with multiple arguments
+-- LspStop with or w/o arguments
 vim.api.nvim_create_user_command("LspStop", function(info)
-  for _, name in ipairs(info.fargs) do
+  local clients = info.fargs
+  if #clients == 0 then
+    clients = vim
+      .iter(vim.lsp.get_clients({ bufnr = vim.api.nvim_get_current_buf() }))
+      :map(function(client)
+        return client.name
+      end)
+      :totable()
+  end
+
+  for _, name in ipairs(clients) do
     if vim.lsp.config[name] == nil then
       vim.notify(("Invalid server: '%s'"):format(name), vim.log.levels.ERROR)
     else
@@ -79,16 +89,25 @@ vim.api.nvim_create_user_command("LspStop", function(info)
     end
   end
 end, {
-  nargs = "+",
+  nargs = "*",
   complete = complete_client,
 })
 
--- LspRestart with arguments
+-- LspRestart with or w/o arguments
 vim.api.nvim_create_user_command("LspRestart", function(info)
-  for _, name in ipairs(info.fargs) do
+  local clients = info.fargs
+  if #clients == 0 then
+    clients = vim
+      .iter(vim.lsp.get_clients())
+      :map(function(client)
+        return client.name
+      end)
+      :totable()
+  end
+
+  for _, name in ipairs(clients) do
     if vim.lsp.config[name] == nil then
       vim.notify(("Invalid server: '%s'"):format(name), vim.log.levels.ERROR)
-      return
     else
       vim.lsp.enable(name, false)
       vim.notify(("Sucessfully stopped server: '%s'"):format(name), vim.log.levels.WARN)
@@ -97,7 +116,7 @@ vim.api.nvim_create_user_command("LspRestart", function(info)
 
   local timer = assert(vim.uv.new_timer())
   timer:start(500, 0, function()
-    for _, name in ipairs(info.fargs) do
+    for _, name in ipairs(clients) do
       vim.schedule_wrap(function(x)
         vim.lsp.enable(x)
         vim.notify(("Sucessfully enabled server: '%s'\n"):format(x), vim.log.levels.INFO)
@@ -105,7 +124,7 @@ vim.api.nvim_create_user_command("LspRestart", function(info)
     end
   end)
 end, {
-  nargs = "+",
+  nargs = "*",
   complete = complete_client,
 })
 
