@@ -9,7 +9,6 @@ local M = {
 
 function M.config()
   local telescope = require("telescope")
-  local actions = require("telescope.actions")
   local builtin = require("telescope.builtin")
 
   telescope.setup({
@@ -25,16 +24,6 @@ function M.config()
     },
     defaults = {
       file_ignore_patterns = { "node_modules", "%.git[\\/]", "%.cache", "%.o", "%.out", "%.exe" }, -- [\\/] matches either / or \ in paths, necessary for windows
-      mappings = {
-        i = {
-          ["<C-j>"] = actions.move_selection_next,
-          ["<C-k>"] = actions.move_selection_previous,
-          ["<Tab>"] = actions.select_default,
-        },
-        n = {
-          ["<Tab>"] = actions.select_default,
-        },
-      },
     },
   })
 
