@@ -58,20 +58,9 @@ vim.keymap.set("n", "-", "<CMD>split<CR><C-w>j", { silent = true })
 vim.keymap.set("x", "J", ":m '>+1<CR>gv=gv")
 vim.keymap.set("x", "K", ":m '<-2<CR>gv=gv")
 
--- This function fixes screen flickering when pressing <C-d> from top of the file
-local function lazy(keys)
-  keys = vim.api.nvim_replace_termcodes(keys, true, false, true)
-  return function()
-    local old = vim.o.lazyredraw
-    vim.o.lazyredraw = true
-    vim.api.nvim_feedkeys(keys, "nx", false)
-    vim.o.lazyredraw = old
-  end
-end
-
--- Cursor stays at the center of the screen
-vim.keymap.set("n", "<C-d>", lazy("<C-d>zz"))
-vim.keymap.set("n", "<C-u>", lazy("<C-u>zz"))
+-- Move up and down half the page and set cursor at the center the screen
+vim.keymap.set("n", "<C-d>", "<C-d>zz", { noremap = true })
+vim.keymap.set("n", "<C-u>", "<C-u>zz", { noremap = true })
 
 -- Cursor stays at the center of the screen
 vim.keymap.set("n", "n", "nzzzv")

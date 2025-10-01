@@ -35,9 +35,9 @@ vim.opt.updatetime = 300 -- Make Neovim more responsive (4000ms default)
 
 -- Cursor changes
 vim.opt.guicursor = {
-  "n-v-c:block,i-ci-ve-sm:block,r-cr:hor20,o:hor50",
+  "n-v-c:block,i-ci-ve:block,r-cr:hor20,o:hor50",
   "i-ci-ve:blinkwait700-blinkoff400-blinkon250",
-  "sm:blinkwait175-blinkoff150-blinkon175",
+  "sm:block-blinkwait175-blinkoff150-blinkon175",
 }
 
 -- Windows
@@ -64,15 +64,9 @@ vim.opt.grepprg = "rg --vimgrep"
 vim.opt.grepformat = "%f:%l:%c:%m"
 
 -- Folds
-function _G.customFold()
-  local start_line = vim.fn.getline(vim.v.foldstart)
-  local end_line = vim.fn.getline(vim.v.foldend)
-  local line_count = vim.v.foldend - vim.v.foldstart + 1
-  return start_line .. " ... " .. end_line .. " 󰁂 " .. line_count .. " lines "
-end
-
 vim.opt.foldmethod = "manual" -- Folds are created manually
-vim.opt.foldtext = "v:lua.customFold()"
+vim.opt.foldtext = ""
+vim.opt.foldexpr = "v:lua.vim.treesitter.foldexpr()"
 vim.opt.foldcolumn = "1" -- Always show foldcolumn
 vim.opt.fillchars:append({
   -- fold = " ",
