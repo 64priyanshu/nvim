@@ -7,6 +7,19 @@ vim.api.nvim_create_autocmd("BufEnter", {
   end,
 })
 
+-- Create parent directory of the file if it doesn't exist
+vim.api.nvim_create_autocmd("BufWritePre", {
+  group = vim.api.nvim_create_augroup("CreateDirectory", { clear = true }),
+  pattern = "*",
+  callback = function()
+    local fpath = vim.fn.expand("<afile>")
+    local dir = vim.fn.fnamemodify(fpath, ":p:h")
+    if vim.fn.isdirectory(dir) ~= 1 then
+      vim.fn.mkdir(dir, "p")
+    end
+  end,
+})
+
 -- Highlight on yank
 vim.api.nvim_create_autocmd("TextYankPost", {
   group = vim.api.nvim_create_augroup("YankHighlight", { clear = true }),
