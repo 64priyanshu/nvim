@@ -3,7 +3,6 @@ local M = {
   tag = "0.1.8",
   dependencies = {
     "nvim-lua/plenary.nvim",
-    { "nvim-telescope/telescope-fzf-native.nvim", build = "make" },
   },
 }
 
@@ -26,9 +25,6 @@ function M.config()
       file_ignore_patterns = { "node_modules", "%.git[\\/]", "%.cache", "%.o", "%.out", "%.exe" }, -- [\\/] matches either / or \ in paths, necessary for windows
     },
   })
-
-  -- Load fzf extension for telescope
-  telescope.load_extension("fzf")
 
   -- Keymaps
   vim.keymap.set("n", "<leader>ff", builtin.find_files)

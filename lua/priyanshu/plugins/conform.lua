@@ -22,7 +22,7 @@ function M.config()
   })
 
   -- Custom command to Disable format on save: FormatDisable, FormatDisable! (for current buffer)
-  vim.api.nvim_create_user_command("FormatDisable", function(args)
+  vim.api.nvim_create_user_command("FD", function(args)
     if args.bang then
       vim.b.disable_autoformat = true
       vim.notify("Autoformat on save disabled for the current buffer.", vim.log.levels.WARN)
@@ -35,7 +35,7 @@ function M.config()
   })
 
   -- Custom command to Enable format on save for all buffers: FormatEnable
-  vim.api.nvim_create_user_command("FormatEnable", function()
+  vim.api.nvim_create_user_command("FE", function()
     vim.b.disable_autoformat = false
     vim.g.disable_autoformat = false
     vim.notify("Autoformat on save enabled.", vim.log.levels.INFO)

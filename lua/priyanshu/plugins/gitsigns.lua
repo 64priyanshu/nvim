@@ -4,17 +4,6 @@ local M = {
 }
 
 function M.config()
-  local border = {
-    { "🭽", "FloatBorder" },
-    { "▔", "FloatBorder" },
-    { "🭾", "FloatBorder" },
-    { "▕", "FloatBorder" },
-    { "🭿", "FloatBorder" },
-    { "▁", "FloatBorder" },
-    { "🭼", "FloatBorder" },
-    { "▏", "FloatBorder" },
-  }
-
   require("gitsigns").setup({
     update_debounce = 100,
     signs = {
@@ -27,7 +16,7 @@ function M.config()
     },
     signs_staged_enable = false,
     preview_config = {
-      border = border,
+      border = "rounded",
       style = "minimal",
       relative = "cursor",
       row = 1,
