@@ -1,3 +1,4 @@
+-- Install: https://github.com/neovim/nvim-lspconfig/blob/master/doc/configs.md#ts_ls
 -- https://github.com/neovim/nvim-lspconfig/blob/master/lua/lspconfig/configs/ts_ls.lua
 -- https://github.com/neovim/nvim-lspconfig/blob/master/lua/lspconfig/configs/ts_ls.lua#L4
 return {

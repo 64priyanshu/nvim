@@ -10,7 +10,9 @@ function M.config()
       end
       return { timeout_ms = 500, lsp_format = "fallback" }
     end,
-    formatters_by_ft = {
+    formatters_by_ft = { -- https://github.com/stevearc/conform.nvim?tab=readme-ov-file#formatters
+      -- stylua: https://github.com/JohnnyMorganz/StyLua
+      -- prettier: https://github.com/prettier/prettier
       lua = { "stylua" },
       javascript = { "prettier" },
       typescript = { "prettier" },

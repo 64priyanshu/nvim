@@ -6,6 +6,6 @@ require("priyanshu.core.autocommands")
 -- Lazy
 require("priyanshu.lazy")
 
--- LSPs
+-- LSPs (Install LSP from: https://github.com/neovim/nvim-lspconfig/blob/master/doc/configs.md)
 require("priyanshu.plugins.lsp.diagnostics")
 require("priyanshu.plugins.lsp.lspconfig")

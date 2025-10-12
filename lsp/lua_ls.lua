@@ -1,3 +1,4 @@
+-- Install: https://github.com/neovim/nvim-lspconfig/blob/master/doc/configs.md#lua_ls
 -- https://github.com/neovim/nvim-lspconfig/blob/master/lua/lspconfig/configs/lua_ls.lua
 -- https://github.com/neovim/nvim-lspconfig/blob/master/lua/lspconfig/configs/lua_ls.lua#L15
 return {
