@@ -1,5 +1,5 @@
--- LSP references
--- https://github.com/neovim/nvim-lspconfig/tree/master/lua/lspconfig/configs
+-- LSP references: https://github.com/neovim/nvim-lspconfig/tree/master/lua/lspconfig/configs
+-- Install LSP from: https://github.com/neovim/nvim-lspconfig/blob/master/doc/configs.md
 
 -- Capabilities
 local capabilities = vim.lsp.protocol.make_client_capabilities()
