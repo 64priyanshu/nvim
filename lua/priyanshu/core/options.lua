@@ -1,6 +1,9 @@
--- Disable netrw
-vim.g.loaded_netrw = 1
-vim.g.loaded_netrwPlugin = 1
+-- Netrw
+vim.g.netrw_banner = 0
+vim.g.netrw_winsize = 25
+
+-- Custom simple statusline
+vim.opt.statusline = [[%<%f %h%m%r %y%=%-14.(%l,%c%V%) %P]]
 
 -- Leader Key
 vim.g.mapleader = " "
@@ -26,8 +29,9 @@ vim.opt.shiftwidth = 2 -- Number of spaces to use for each step of (auto)indent
 -- UI
 vim.opt.signcolumn = "yes" -- Always show the sign column, otherwise it would shift the text each time
 vim.opt.cursorline = true -- Highlight the text line of the cursor
+vim.opt.cursorcolumn = true -- Highlight the cursor column
 vim.opt.showcmd = true -- Enable showing (partial) commands in the last line of screen
-vim.opt.showmode = false -- Disable showing current mode below statusline (eg: -- INSERT --)
+-- vim.opt.showmode = false -- Disable showing current mode below statusline (eg: -- INSERT --)
 vim.opt.scrolloff = 8 -- Keep 8 lines above and below the cursor
 vim.opt.sidescrolloff = 8 -- Keep 8 columns to the left and right of the cursor
 vim.opt.pumheight = 20 -- Completion window height
@@ -80,3 +84,5 @@ vim.opt.swapfile = false -- Disable creating a swap file
 vim.opt.backup = false -- Disable creating backup
 vim.opt.undofile = true -- Create a undofile
 vim.opt.undodir = vim.fn.expand("$HOME") .. "/.vim/undodir" -- Store undofiles in home/.vim/undodir/
+vim.opt.viewdir = vim.fn.expand("$HOME") .. "/.vim/viewdir" -- Store view files in  home/.vim/viewdir
+vim.opt.viewoptions:remove("curdir") -- Remove LCD (local working directory) information from view save files (which is enabled by default)

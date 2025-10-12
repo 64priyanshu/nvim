@@ -4,6 +4,19 @@
 vim.keymap.set("n", "<leader>w", "<CMD>w<CR>", { silent = true })
 vim.keymap.set("n", "<leader>q", "<CMD>bp|bd #<CR>", { silent = true })
 
+-- Netrw
+vim.keymap.set("n", "<leader>e", function()
+  if vim.bo.filetype == "netrw" then
+    vim.cmd("b#")
+  else
+    vim.cmd("Explore")
+  end
+end, { noremap = true, silent = true })
+
+-- Buffer Navigation
+vim.keymap.set("n", "L", "<CMD>bnext<CR>", { silent = true })
+vim.keymap.set("n", "H", "<CMD>bprev<CR>", { silent = true })
+
 -- Stop hlsearch
 vim.keymap.set("n", "<leader>h", "<CMD>nohlsearch<CR>", { silent = true })
 

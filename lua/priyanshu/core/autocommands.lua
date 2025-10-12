@@ -81,3 +81,28 @@ vim.api.nvim_create_autocmd("TermOpen", {
     end
   end,
 })
+
+-- Save View
+
+-- Autocommand to save view state on exiting buffer window
+vim.api.nvim_create_autocmd("BufWinLeave", {
+  group = vim.api.nvim_create_augroup("SaveViewState", { clear = true }),
+  pattern = "*",
+  callback = function()
+    if vim.bo.filetype ~= "" and vim.bo.buftype == "" then
+      vim.cmd("silent! mkview")
+    end
+  end,
+})
+
+-- Autocommand to load view state and center screen on entering a buffer window
+vim.api.nvim_create_autocmd("BufWinEnter", {
+  group = vim.api.nvim_create_augroup("LoadViewState", { clear = true }),
+  pattern = "*",
+  callback = function()
+    if vim.bo.filetype ~= "" and vim.bo.buftype == "" then
+      vim.cmd("silent! loadview")
+      vim.cmd("normal! zz")
+    end
+  end,
+})
