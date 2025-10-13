@@ -1,7 +1,7 @@
 -- <LEADER> keymaps
 
 -- Quick file save/close action
-vim.keymap.set("n", "<leader>w", "<CMD>w<CR>", { silent = true })
+vim.keymap.set("n", "<leader>w", "<CMD>write<CR>", { silent = true })
 vim.keymap.set("n", "<leader>q", "<CMD>bp|bd #<CR>", { silent = true })
 
 -- Netrw
@@ -15,14 +15,10 @@ end, { noremap = true, silent = true })
 
 -- Buffer Navigation
 vim.keymap.set("n", "L", "<CMD>bnext<CR>", { silent = true })
-vim.keymap.set("n", "H", "<CMD>bprev<CR>", { silent = true })
+vim.keymap.set("n", "H", "<CMD>bprevious<CR>", { silent = true })
 
 -- Stop hlsearch
 vim.keymap.set("n", "<leader>h", "<CMD>nohlsearch<CR>", { silent = true })
-
--- Search and replace word under the cursor
-vim.keymap.set("n", "<leader>sw", [[:%s/\<<C-r><C-w>\>//gI<Left><Left><Left>]])
-vim.keymap.set("x", "<leader>sw", [["8y:%s/\<<C-r>9\>//gI<Left><Left><Left>]]) -- Yank to "8 register and paste from "9 because content of "8 register gets shifted to "9 register because of yank-ring auto-cmd
 
 -- Line Wrap
 vim.keymap.set("n", "<leader>lw", function()
