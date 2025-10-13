@@ -7,7 +7,7 @@ vim.keymap.set("n", "<leader>q", "<CMD>bp|bd #<CR>", { silent = true })
 -- Netrw
 vim.keymap.set("n", "<leader>e", function()
   if vim.bo.filetype == "netrw" then
-    vim.cmd("b#")
+    vim.cmd("Rexplore")
   else
     vim.cmd("Explore")
   end

@@ -1,6 +1,7 @@
 -- Netrw
-vim.g.netrw_banner = 0
-vim.g.netrw_winsize = 25
+vim.g.netrw_banner = 0 -- Disable banner
+vim.g.netrw_winsize = 25 -- Set size of netrw split window
+vim.g.netrw_localcopydircmd = "cp -r" -- Copy directories recursively
 
 -- Custom simple statusline
 vim.opt.statusline = [[%<%f %h%m%r %y%=%-14.(%l,%c%V%) %P]]
