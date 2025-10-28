@@ -58,6 +58,19 @@ vim.api.nvim_create_autocmd("LspAttach", {
       end, { buffer = bufnr })
     end
 
+    -- Color
+    if client:supports_method("textDocument/documentColor") then
+      vim.keymap.set("n", "grc", function()
+        local state = vim.lsp.document_color.is_enabled(bufnr)
+        vim.lsp.document_color.enable(not state, bufnr)
+        if not state then
+          vim.notify("Color enabled for current buffer.", vim.log.levels.INFO)
+        else
+          vim.notify("Color disabled for current buffer.", vim.log.levels.INFO)
+        end
+      end, { buffer = bufnr })
+    end
+
     -- Keymaps
     local bufopts = { silent = true, buffer = bufnr }
     vim.keymap.set("n", "gd", vim.lsp.buf.definition, bufopts)
