@@ -77,6 +77,7 @@ vim.opt.fillchars:append({
   -- fold = " ",
   foldopen = "⏷",
   foldclose = "⏵",
+  -- foldinner = " ",
   foldsep = "▏",
 })
 
