@@ -1,4 +1,6 @@
 -- Diagnostics
+local border = { "🭽", "▔", "🭾", "▕", "🭿", "▁", "🭼", "▏" }
+
 vim.diagnostic.config({
   virtual_text = true,
   underline = true,
@@ -15,7 +17,7 @@ vim.diagnostic.config({
   float = {
     focusable = true,
     style = "minimal",
-    border = "rounded",
+    border = border,
     source = "always",
     header = "",
     prefix = "",
@@ -87,17 +89,17 @@ vim.api.nvim_create_autocmd("LspAttach", {
     -- Lsp Hover Windows
     vim.keymap.set("n", "K", function()
       vim.lsp.buf.hover({
-        border = "rounded",
+        border = border,
       })
     end, bufopts)
     vim.keymap.set("n", "gK", function()
       vim.lsp.buf.signature_help({
-        border = "rounded",
+        border = border,
       })
     end, bufopts)
     vim.keymap.set("i", "<C-k>", function()
       vim.lsp.buf.signature_help({
-        border = "rounded",
+        border = border,
       })
     end, bufopts)
 

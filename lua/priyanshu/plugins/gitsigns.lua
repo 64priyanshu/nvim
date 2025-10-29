@@ -4,6 +4,8 @@ local M = {
 }
 
 function M.config()
+  local border = { "🭽", "▔", "🭾", "▕", "🭿", "▁", "🭼", "▏" }
+
   require("gitsigns").setup({
     update_debounce = 100,
     signs = {
@@ -16,7 +18,7 @@ function M.config()
     },
     signs_staged_enable = false,
     preview_config = {
-      border = "rounded",
+      border = border,
       style = "minimal",
       relative = "cursor",
       row = 1,
