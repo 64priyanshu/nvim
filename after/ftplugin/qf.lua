@@ -60,7 +60,7 @@ local function remove_qf_items()
 
   -- Exit Visual mode after the operation
   if mode:match("[vV]") then
-    vim.api.nvim_feedkeys(vim.api.nvim_replace_termcodes("<Esc>", true, false, true), "n", false)
+    vim.api.nvim_input("<Esc>")
   end
 end
 
