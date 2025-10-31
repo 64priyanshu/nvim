@@ -58,6 +58,17 @@ require("blink.cmp").setup({
     },
   },
 
+  -- Signature Help
+  signature = {
+    enabled = true,
+    window = {
+      border = { "🭽", "▔", "🭾", "▕", "🭿", "▁", "🭼", "▏" },
+      winhighlight = "Normal:NormalFloat,FloatBorder:FloatBorder",
+      treesitter_highlighting = true,
+      show_documentation = false,
+    },
+  },
+
   -- Completion
   completion = {
     keyword = { range = "prefix" },

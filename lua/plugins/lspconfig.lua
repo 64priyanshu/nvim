@@ -131,22 +131,19 @@ vim.api.nvim_create_autocmd("LspAttach", {
     -- gra -> code actions
     -- grn -> lsp-rename
 
-    -- Lsp Hover Windows
+    --  Hover Window
     vim.keymap.set("n", "K", function()
       vim.lsp.buf.hover({
         border = border,
       })
     end, bufopts)
+    -- Signature Help for normal mode
     vim.keymap.set("n", "gK", function()
       vim.lsp.buf.signature_help({
         border = border,
       })
     end, bufopts)
-    vim.keymap.set("i", "<C-k>", function()
-      vim.lsp.buf.signature_help({
-        border = "rounded",
-      })
-    end, bufopts)
+    -- Signature Help for insert mode is handled by blink.cmp
 
     -- Diagnostic
     vim.keymap.set("n", "grd", vim.diagnostic.open_float, bufopts)
