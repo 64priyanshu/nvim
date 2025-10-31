@@ -1,12 +1,13 @@
 -- Core files
-require("priyanshu.core.options")
-require("priyanshu.core.keymaps")
-require("priyanshu.core.autocommands")
+require("core.options")
+require("core.keymaps")
+require("core.autocommands")
 
--- Lazy
-require("priyanshu.lazy")
-
--- LSPs
--- Mason Registry: https://mason-registry.dev/registry/list
-require("priyanshu.plugins.lsp.diagnostics")
-require("priyanshu.plugins.lsp.lspconfig")
+-- Plugins
+require("plugins.blink")
+require("plugins.colorscheme")
+require("plugins.conform")
+require("plugins.gitsigns")
+require("plugins.lspconfig")
+require("plugins.telescope")
+require("plugins.treesitter")
