@@ -62,8 +62,6 @@ require("blink.cmp").setup({
   signature = {
     enabled = true,
     window = {
-      border = { "🭽", "▔", "🭾", "▕", "🭿", "▁", "🭼", "▏" },
-      winhighlight = "Normal:NormalFloat,FloatBorder:FloatBorder",
       treesitter_highlighting = true,
       show_documentation = false,
     },
