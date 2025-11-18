@@ -13,10 +13,6 @@ vim.keymap.set("n", "<leader>e", function()
   end
 end, { noremap = true, silent = true })
 
--- Buffer Navigation
-vim.keymap.set("n", "L", "<CMD>bnext<CR>", { silent = true })
-vim.keymap.set("n", "H", "<CMD>bprevious<CR>", { silent = true })
-
 -- Stop hlsearch
 vim.keymap.set("n", "<leader>h", "<CMD>nohlsearch<CR>", { silent = true })
 
