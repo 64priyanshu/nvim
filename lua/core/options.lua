@@ -68,6 +68,13 @@ vim.opt.path = ".,,**"
 vim.opt.grepprg = "rg --vimgrep"
 vim.opt.grepformat = "%f:%l:%c:%m"
 
+-- List char
+vim.opt.list = true
+vim.opt.listchars = {
+	tab = "> ",
+	multispace = "---+",
+}
+
 -- Folds
 vim.opt.foldmethod = "manual" -- Folds are created manually
 vim.opt.foldtext = ""
