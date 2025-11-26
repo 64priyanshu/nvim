@@ -1,43 +1,43 @@
 vim.pack.add({
-  { src = "https://github.com/stevearc/conform.nvim" },
+	{ src = "https://github.com/stevearc/conform.nvim" },
 })
 
 require("conform").setup({
-  format_on_save = function(bufnr)
-    if vim.g.disable_autoformat or vim.b[bufnr].disable_autoformat then
-      return
-    end
-    return { timeout_ms = 1000, lsp_format = "fallback" }
-  end,
-  formatters_by_ft = { -- https://github.com/stevearc/conform.nvim?tab=readme-ov-file#formatters
-    -- stylua: https://github.com/JohnnyMorganz/StyLua
-    -- prettier: https://github.com/prettier/prettier
-    lua = { "stylua" },
-    javascript = { "prettier" },
-    typescript = { "prettier" },
-    html = { "prettier" },
-    css = { "prettier" },
-    json = { "prettier" },
-    markdown = { "prettier" },
-  },
+	format_on_save = function(bufnr)
+		if vim.g.disable_autoformat or vim.b[bufnr].disable_autoformat then
+			return
+		end
+		return { timeout_ms = 1000, lsp_format = "fallback" }
+	end,
+	formatters_by_ft = { -- https://github.com/stevearc/conform.nvim?tab=readme-ov-file#formatters
+		-- stylua: https://github.com/JohnnyMorganz/StyLua
+		-- prettier: https://github.com/prettier/prettier
+		lua = { "stylua" },
+		javascript = { "prettier" },
+		typescript = { "prettier" },
+		html = { "prettier" },
+		css = { "prettier" },
+		json = { "prettier" },
+		markdown = { "prettier" },
+	},
 })
 
 -- Custom command to Disable format on save: FormatDisable, FormatDisable! (for current buffer)
 vim.api.nvim_create_user_command("FD", function(args)
-  if args.bang then
-    vim.b.disable_autoformat = true
-    vim.notify("Autoformat on save disabled for the current buffer.", vim.log.levels.WARN)
-  else
-    vim.g.disable_autoformat = true
-    vim.notify("Autoformat on save disabled globally.", vim.log.levels.WARN)
-  end
+	if args.bang then
+		vim.b.disable_autoformat = true
+		vim.notify("Autoformat on save disabled for the current buffer.", vim.log.levels.WARN)
+	else
+		vim.g.disable_autoformat = true
+		vim.notify("Autoformat on save disabled globally.", vim.log.levels.WARN)
+	end
 end, {
-  bang = true,
+	bang = true,
 })
 
 -- Custom command to Enable format on save for all buffers: FormatEnable
 vim.api.nvim_create_user_command("FE", function()
-  vim.b.disable_autoformat = false
-  vim.g.disable_autoformat = false
-  vim.notify("Autoformat on save enabled.", vim.log.levels.INFO)
+	vim.b.disable_autoformat = false
+	vim.g.disable_autoformat = false
+	vim.notify("Autoformat on save enabled.", vim.log.levels.INFO)
 end, {})

@@ -6,11 +6,11 @@ vim.keymap.set("n", "<leader>q", "<CMD>bp|bd #<CR>", { silent = true })
 
 -- Netrw
 vim.keymap.set("n", "<leader>e", function()
-  if vim.bo.filetype == "netrw" then
-    vim.cmd("Rexplore")
-  else
-    vim.cmd("Explore")
-  end
+	if vim.bo.filetype == "netrw" then
+		vim.cmd("Rexplore")
+	else
+		vim.cmd("Explore")
+	end
 end, { noremap = true, silent = true })
 
 -- Stop hlsearch
@@ -18,22 +18,22 @@ vim.keymap.set("n", "<leader>h", "<CMD>nohlsearch<CR>", { silent = true })
 
 -- Line Wrap
 vim.keymap.set("n", "<leader>lw", function()
-  vim.wo.wrap = not vim.wo.wrap
-  if vim.wo.wrap then
-    vim.notify("Enabled line-wrap for this buffer.", vim.log.levels.INFO)
-  else
-    vim.notify("Disabled line-wrap for this buffer.", vim.log.levels.INFO)
-  end
+	vim.wo.wrap = not vim.wo.wrap
+	if vim.wo.wrap then
+		vim.notify("Enabled line-wrap for this buffer.", vim.log.levels.INFO)
+	else
+		vim.notify("Disabled line-wrap for this buffer.", vim.log.levels.INFO)
+	end
 end)
 
 -- Toggle Read-Only mode for current buffer
 vim.keymap.set("n", "<leader>ro", function()
-  vim.bo.modifiable = not vim.bo.modifiable
-  if vim.bo.modifiable then
-    vim.notify("Modifiable.", vim.log.levels.INFO)
-  else
-    vim.notify("Read only.", vim.log.levels.WARN)
-  end
+	vim.bo.modifiable = not vim.bo.modifiable
+	if vim.bo.modifiable then
+		vim.notify("Modifiable.", vim.log.levels.INFO)
+	else
+		vim.notify("Read only.", vim.log.levels.WARN)
+	end
 end)
 
 -- Copy to system clipboard
@@ -44,9 +44,9 @@ vim.keymap.set({ "n", "x" }, "<leader>d", '"_d')
 
 -- Copy current directory path to clipboard
 vim.keymap.set("n", "<leader>cfp", function()
-  local path = vim.fn.expand("%:p:h")
-  vim.fn.setreg("+", path)
-  vim.notify("Copied path to clipboard:\n" .. path, vim.log.levels.INFO)
+	local path = vim.fn.expand("%:p:h")
+	vim.fn.setreg("+", path)
+	vim.notify("Copied path to clipboard:\n" .. path, vim.log.levels.INFO)
 end)
 
 -- Terminal splits
@@ -80,11 +80,11 @@ vim.keymap.set("x", ">", ">gv")
 
 -- Move around in Line wrap and record relative jumps (10k, 10j) in jumplists
 vim.keymap.set("n", "j", function()
-  return vim.v.count > 0 and "m'" .. vim.v.count .. "j" or "gj"
+	return vim.v.count > 0 and "m'" .. vim.v.count .. "j" or "gj"
 end, { expr = true })
 
 vim.keymap.set("n", "k", function()
-  return vim.v.count > 0 and "m'" .. vim.v.count .. "k" or "gk"
+	return vim.v.count > 0 and "m'" .. vim.v.count .. "k" or "gk"
 end, { expr = true })
 
 -- Resize split with Arrow Keys

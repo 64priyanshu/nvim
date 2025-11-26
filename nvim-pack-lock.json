@@ -6,7 +6,7 @@
       "version": "1.0.0 - 2.0.0"
     },
     "conform.nvim": {
-      "rev": "cde4da5",
+      "rev": "4993e07",
       "src": "https://github.com/stevearc/conform.nvim"
     },
     "friendly-snippets": {
@@ -30,7 +30,7 @@
       "src": "https://github.com/nvim-lua/plenary.nvim"
     },
     "telescope.nvim": {
-      "rev": "3a12a85",
+      "rev": "1f8a534",
       "src": "https://github.com/nvim-telescope/telescope.nvim"
     }
   }

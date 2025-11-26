@@ -1,27 +1,27 @@
 vim.pack.add({
-  { src = "https://github.com/lewis6991/gitsigns.nvim" },
+	{ src = "https://github.com/lewis6991/gitsigns.nvim" },
 })
 
 local border = { "🭽", "▔", "🭾", "▕", "🭿", "▁", "🭼", "▏" }
 
 require("gitsigns").setup({
-  update_debounce = 100,
-  signs = {
-    add = { text = "a" },
-    change = { text = "c" },
-    delete = { text = "d" },
-    topdelete = { text = "tp" },
-    changedelete = { text = "cd" },
-    untracked = { text = "u" },
-  },
-  signs_staged_enable = false,
-  preview_config = {
-    border = border,
-    style = "minimal",
-    relative = "cursor",
-    row = 1,
-    col = 0,
-  },
+	update_debounce = 100,
+	signs = {
+		add = { text = "a" },
+		change = { text = "c" },
+		delete = { text = "d" },
+		topdelete = { text = "tp" },
+		changedelete = { text = "cd" },
+		untracked = { text = "u" },
+	},
+	signs_staged_enable = false,
+	preview_config = {
+		border = border,
+		style = "minimal",
+		relative = "cursor",
+		row = 1,
+		col = 0,
+	},
 })
 
 -- Keymaps

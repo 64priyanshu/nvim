@@ -1,11 +1,11 @@
 {
-  "name": "custom-snippets",
-  "contributes": {
-    "snippets": [
-      {
-        "language": "c",
-        "path": "./c.json"
-      }
-    ]
-  }
+	"name": "custom-snippets",
+	"contributes": {
+		"snippets": [
+			{
+				"language": "c",
+				"path": "./c.json"
+			}
+		]
+	}
 }
