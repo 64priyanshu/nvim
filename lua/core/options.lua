@@ -31,6 +31,7 @@ vim.opt.shiftwidth = 4 -- Width of Tab for (auto)indent
 vim.opt.signcolumn = "yes" -- Always show the sign column, otherwise it would shift the text each time
 vim.opt.cursorline = true -- Highlight the text line of the cursor
 vim.opt.cursorcolumn = true -- Highlight the cursor column
+vim.opt.colorcolumn = "80" -- Set a text-width indicator
 vim.opt.showcmd = true -- Enable showing (partial) commands in the last line of screen
 -- vim.opt.showmode = false -- Disable showing current mode below statusline (eg: -- INSERT --)
 vim.opt.scrolloff = 8 -- Keep 8 lines above and below the cursor

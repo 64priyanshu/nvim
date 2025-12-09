@@ -56,8 +56,8 @@ vim.keymap.set("n", "<leader>t|", "<CMD>botright 70vsplit | term<CR>", { silent 
 -- <OTHER> keymaps and remaps
 
 -- Create split and move cursor to new split
-vim.keymap.set("n", "|", "<CMD>vsplit<CR><C-w>l", { silent = true })
-vim.keymap.set("n", "-", "<CMD>split<CR><C-w>j", { silent = true })
+-- vim.keymap.set("n", "|", "<CMD>vsplit<CR><C-w>l", { silent = true })
+-- vim.keymap.set("n", "-", "<CMD>split<CR><C-w>j", { silent = true })
 
 -- Move Lines in Visual mode
 vim.keymap.set("x", "J", ":m '>+1<CR>gv=gv")
