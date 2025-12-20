@@ -6,7 +6,7 @@
       "version": "1.0.0 - 2.0.0"
     },
     "conform.nvim": {
-      "rev": "ffe26e8",
+      "rev": "328c2f1dda56f933d3337a1316e1020ba30ba6aa",
       "src": "https://github.com/stevearc/conform.nvim"
     },
     "friendly-snippets": {
@@ -23,14 +23,15 @@
     },
     "nvim-treesitter": {
       "rev": "42fc28ba",
-      "src": "https://github.com/nvim-treesitter/nvim-treesitter"
+      "src": "https://github.com/nvim-treesitter/nvim-treesitter",
+      "version": "'master'"
     },
     "plenary.nvim": {
       "rev": "b9fd522",
       "src": "https://github.com/nvim-lua/plenary.nvim"
     },
     "telescope.nvim": {
-      "rev": "e69b434",
+      "rev": "3d757e586ff0bfc85bdb7b46c9d3d932147a0cde",
       "src": "https://github.com/nvim-telescope/telescope.nvim"
     }
   }
