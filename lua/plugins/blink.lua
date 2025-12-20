@@ -4,8 +4,8 @@ vim.pack.add({
 })
 
 require("blink.cmp").setup({
-	-- Keymap: https://cmp.saghen.dev/configuration/keymap#super-tab
-	keymap = { preset = "super-tab" },
+	-- Keymap: https://cmp.saghen.dev/configuration/keymap#default
+	keymap = { preset = "default" },
 
 	-- Appearance
 	appearance = {
@@ -61,6 +61,7 @@ require("blink.cmp").setup({
 	-- Signature Help
 	signature = {
 		enabled = true,
+		trigger = { enabled = false },
 		window = {
 			treesitter_highlighting = true,
 			show_documentation = false,
