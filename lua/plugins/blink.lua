@@ -61,8 +61,8 @@ require("blink.cmp").setup({
 	-- Signature Help
 	signature = {
 		enabled = true,
-		trigger = { enabled = false },
 		window = {
+			winblend = 40,
 			treesitter_highlighting = true,
 			show_documentation = false,
 		},
