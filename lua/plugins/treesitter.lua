@@ -1,36 +1,23 @@
 vim.pack.add({
-	{ src = "https://github.com/nvim-treesitter/nvim-treesitter", version = "master" },
+	{ src = "https://github.com/nvim-treesitter/nvim-treesitter", version = "main" },
 })
 
-require("nvim-treesitter.configs").setup({
-	ensure_installed = { "c", "css", "html", "javascript", "lua", "typescript" },
-	sync_install = false,
-	auto_install = true,
-	highlight = {
-		enable = true,
-		-- Disable treesitter highlight for large files and mentioned files
-		disable = function(lang, bufnr)
-			-- local langs = { "html" }
-			local langs = {}
-			if vim.tbl_contains(langs, lang) then
-				return true
-			end
-			local max_filesize = 100 * 1024 -- 100 KB
-			local ok, stats = pcall(vim.loop.fs_stat, vim.api.nvim_buf_get_name(bufnr))
-			if ok and stats and stats.size > max_filesize then
-				return true
-			end
-		end,
-	},
-	indent = {
-		enable = true,
-		-- Disable treesitter indent for files with more than 5k lines and for mentioned filetypes
-		disable = function(lang, bufnr)
-			local langs = { "css", "javascript", "json" }
-			return vim.api.nvim_buf_line_count(bufnr) > 5000 or vim.tbl_contains(langs, lang)
-		end,
-	},
-	autopairs = {
-		enable = true,
-	},
+-- Enable highlight and indent
+vim.api.nvim_create_autocmd("FileType", {
+	callback = function()
+		-- Enable treesitter highlighting and disable regex syntax
+		pcall(vim.treesitter.start)
+		-- Enable treesitter-based indentation
+		vim.bo.indentexpr = "v:lua.require'nvim-treesitter'.indentexpr()"
+	end,
 })
+
+-- Ensure Installed
+local ensure_installed = { "c", "css", "html", "javascript", "lua", "typescript" }
+local already_installed = require("nvim-treesitter.config").get_installed()
+local parsers_to_Install = vim.iter(ensure_installed)
+	:filter(function(parser)
+		return not vim.tbl_contains(already_installed, parser)
+	end)
+	:totable()
+require("nvim-treesitter").install(parsers_to_Install)
