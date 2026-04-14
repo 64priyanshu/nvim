@@ -2,6 +2,9 @@ vim.pack.add({
 	{ src = "https://github.com/nvim-treesitter/nvim-treesitter", version = "main" },
 })
 
+-- For Windows
+-- vim.env.CC = "gcc"
+
 -- Enable highlight and indent
 vim.api.nvim_create_autocmd("FileType", {
 	callback = function()
