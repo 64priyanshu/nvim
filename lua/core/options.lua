@@ -96,4 +96,4 @@ vim.opt.backup = false -- Disable creating backup
 vim.opt.undofile = true -- Create a undofile
 vim.opt.undodir = vim.fn.expand("$HOME") .. "/.vim/undodir" -- Store undofiles in home/.vim/undodir/
 vim.opt.viewdir = vim.fn.expand("$HOME") .. "/.vim/viewdir" -- Store view files in home/.vim/viewdir
-vim.opt.viewoptions:remove("curdir") -- Remove LCD (local working directory) information from view save files (which is enabled by default)
+vim.opt.viewoptions:remove({ "curdir", "folds" }) -- Remove LCD (local working directory) and Folds information from view save files (which is enabled by default)
