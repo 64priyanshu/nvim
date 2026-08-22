@@ -52,6 +52,7 @@ vim.api.nvim_create_autocmd({ "FileType" }, {
 		"checkhealth",
 		"qf",
 		"terminal",
+		"nvim-undotree",
 	},
 	callback = function()
 		vim.api.nvim_buf_set_keymap(0, "n", "q", "<CMD>close<CR>", { noremap = true, silent = true })
